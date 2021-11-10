@@ -6,9 +6,9 @@ public class Solution {
     public static void main(String[] args) {
 
 //        System.out.println(Arrays.toString(createArray(3)));
-       int[] arr = new int[]{1, 2,3,4, 5};
-       int[] barr = new int[]{7, 7, 3, 8, 5, 7, 3, 8, 2, 9, 7};
-       int[] stats = new int[]{6,2, 3, 16, 12, 14, 8};
+//       int[] arr = new int[]{1, 2,3,4, 5};
+//       int[] barr = new int[]{7, 7, 3, 8, 5, 7, 3, 8, 2, 9, 7};
+//       int[] stats = new int[]{6,2, 3, 16, 12, 14, 8};
 
 //        System.out.println(Arrays.toString(replaceArray(arr)));
 //        System.out.println(Arrays.toString(firstReverse(arr)));
@@ -21,7 +21,8 @@ public class Solution {
 //        System.out.println(spinWords("This is easy here and there"));
 //        System.out.println(largestPairSum(new int[]{10, 14, 2, 23, 19}));
 //        System.out.println(integerToRoman(64));
-
+//        System.out.println(isPower(72));
+//
 //        List<String> javaGuys = new ArrayList<>();
 //        javaGuys.add("Mark");
 //        javaGuys.add("Chukwuma");
@@ -32,8 +33,8 @@ public class Solution {
 //        javaGuys.add("Ikechukwu");
 //        javaGuys.add("Prosper");
 //        javaGuys.add("Ikechukwu");
-
-
+//
+//
 //        System.out.println("The unsorted list is: " + javaGuys);
 //        System.out.println("==============================================");
 //        Collections.sort(javaGuys);
@@ -41,12 +42,149 @@ public class Solution {
 //        Collections.reverse(javaGuys);
 //        System.out.println("==============================================");
 //        System.out.println("The reverse order sorted list is: " + javaGuys);
-
+//
 //        System.out.println(mapTest());
+//
+//        System.out.println(Integer.toBinaryString(37));
+//        System.out.println(Integer.parseInt("100001", 2));
+//
+//        System.out.println(triangleBuilder(18));
+//        var x = arrayRotation(new int[]{10, 20, 30, 40, 50}, 2);
 
-
+//        System.out.println(shiftedDiff("fatique", "tiquefa"));
+        //
+        System.out.println(dna("ATCG"));
     }
 
+    public static String dna(String dna) {
+        return dna.replace('T','A').replace('A','T')
+                .replace('C','G').replace('G','C');
+
+//        return dna.replace('T','X').replace('A','T').replace('X','A')
+//                .replace('C','X').replace('G','C').replace('X','G');
+    }
+
+    public static int shiftedDiff(String first, String second) {
+        if (first.length() != second.length()) return -1;
+        return (second + second).indexOf(first);
+    }
+
+    static class Node {
+
+        int data;
+        Node next = null;
+
+        Node(final int data) {
+            this.data = data;
+        }
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public static Node append(Node listA, Node listB) {
+
+            return listA;
+        }
+
+        public Node head = null;
+        public Node tail = null;
+
+        //addAtEnd() will add a new node to the end of the list
+        public void addAtEnd(int data) {
+            //Create a new node
+            Node newNode = new Node(data);
+
+            //Checks if the list is empty
+            if(head == null) {
+                //If list is empty, both head and tail will point to new node
+                head = newNode;
+                tail = newNode;
+            }
+            else {
+                //newNode will be added after tail such that tail's next will point to newNode
+                tail.next = newNode;
+                //newNode will become new tail of the list
+                tail = newNode;
+            }
+        }
+    }
+
+    static int[] arrayRotation(int[] arr, int num) {
+        List<int[]> arrList = Arrays.asList(arr);
+        arrList.stream().forEach(System.out::println);
+
+//        int[] newArr = new int[arr.length];
+//
+//        for(int i = 0; i <= num; i++) {
+//            for (int j = 0; j< arr.length-1; j++) {
+//                newArr[0] = arr[arr.length-1];
+//                newArr[j+1] = arr[j];
+//            }
+//            arrayRotation(newArr, num);
+//        }
+//        for(int el : newArr) System.out.println(el);
+        return new int[]{};
+    }
+
+    static int[] method(int[] arr, int target) {
+
+        return new int[]{0, 0};
+    }
+
+    static String triangleBuilder (int height) {
+        String character = "";
+        for (int i = 0; i < height; i++) {
+            System.out.println(character+= "*");
+        }
+        return "";
+    }
+
+    public static int killKthBit(int n, int k) {
+        String strBin = Integer.toBinaryString(n);
+        return 0;
+    }
+
+    public static boolean isPower(int n) {
+
+        for (int i = 2; i < 100; i++) {
+            int result = i;
+            for (int j = 1; j < 10; j++) {
+                result *= i;
+                if(result == n)
+                    return true;
+            }
+        }
+
+        return false;
+
+//        int initVal = n;
+//        ArrayList<Integer> factors = new ArrayList<Integer>();
+//        int factor = 2;
+//        while(n > 1) {
+//            if(n % factor == 0) {
+//                n /= factor;
+//                if(factor != initVal) factors.add(factor);
+//            }else {
+//                factor++;
+//            }
+//        }
+//        Hashtable<Integer, Integer> store = new Hashtable<Integer, Integer>();
+//        for (int fac:factors) {
+//            if(!store.containsKey(fac)) store.put(fac, 1);
+//            else store.put(fac, store.get(fac) + 1);
+//        }
+//        var groupedFactors = store.values();
+//        var minFactorCount = 999;
+//        for(int fac: groupedFactors) {
+//            minFactorCount = Math.min(fac, minFactorCount);
+//        }
+//        for(int fac: groupedFactors) {
+//            if(fac % minFactorCount != 0) return false;
+//        }
+//        return true;
+    }
 
     public static List mapTest() {
         LinkedHashMap<String, Integer> inventory = new LinkedHashMap<>();
