@@ -1,9 +1,16 @@
 package com.company;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.Socket;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Solution {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 //        System.out.println(Arrays.toString(createArray(3)));
 //       int[] arr = new int[]{1, 2,3,4, 5};
@@ -53,7 +60,28 @@ public class Solution {
 
 //        System.out.println(shiftedDiff("fatique", "tiquefa"));
         //
-        System.out.println(dna("ATCG"));
+//        System.out.println(dna("ATCG"));
+
+//        List<Integer> num = List.of(1, 2, 3, 4, 5,6,7);
+//        Predicate<Integer> in = new Predicate<Integer>() {
+//            @Override
+//            public boolean test(Integer integer) {
+//                return false;
+//            }
+//        };
+
+//        Socket socket = new Socket("127.0.0.1", 5000);
+//        InputStreamReader inputStream = new InputStreamReader(socket.getInputStream());
+//        BufferedReader reader = new BufferedReader(inputStream);
+//        String message = reader.readLine();
+
+//        List<Integer> collect = num.stream().filter(new Predicate<Integer>() {
+//            @Override
+//            public boolean test(Integer x) {
+//                return x > 5 && x < 8;
+//            }
+//        }).collect(Collectors.toList());
+//        System.out.println(collect);
     }
 
     public static String dna(String dna) {
@@ -69,46 +97,64 @@ public class Solution {
         return (second + second).indexOf(first);
     }
 
-    static class Node {
+    public static class Node1 {
 
         int data;
-        Node next = null;
+        Node1 next = null;
 
-        Node(final int data) {
+        Node1(final int data) {
             this.data = data;
         }
 
-        public Node(int data, Node next) {
+        public Node1(int data, Node1 next) {
             this.data = data;
             this.next = next;
         }
 
-        public static Node append(Node listA, Node listB) {
+        public static Node1 append(Node1 listA, Node1 listB) {
 
             return listA;
         }
 
-        public Node head = null;
-        public Node tail = null;
+        public Node1 head = null;
+        public Node1 tail = null;
 
-        //addAtEnd() will add a new node to the end of the list
-        public void addAtEnd(int data) {
-            //Create a new node
-            Node newNode = new Node(data);
+//        addAtEnd() will add a new node to the end of the list
+    }
 
-            //Checks if the list is empty
-            if(head == null) {
-                //If list is empty, both head and tail will point to new node
-                head = newNode;
-                tail = newNode;
+    public static class Node {
+            private int data;
+            private Node next;
+
+    public Node(int data, Node next) {
+                this.data = data;
+                this.next = next;
             }
-            else {
-                //newNode will be added after tail such that tail's next will point to newNode
-                tail.next = newNode;
-                //newNode will become new tail of the list
-                tail = newNode;
+
+            public Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
+
+            public int getData() {
+                return data;
+            }
+
+            public Node getNext() {
+                return next;
             }
         }
+
+    public static String stringify(Node list) {
+        StringBuilder sb = new StringBuilder();
+        Node next = list;
+        while(next!=null){
+            sb.append(next.getData());
+            sb.append(" -> ");
+            next = next.getNext();
+        }
+        sb.append("null");
+        return sb.toString();
     }
 
     static int[] arrayRotation(int[] arr, int num) {
