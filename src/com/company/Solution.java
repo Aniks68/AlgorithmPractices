@@ -82,6 +82,181 @@ public class Solution {
 //            }
 //        }).collect(Collectors.toList());
 //        System.out.println(collect);
+
+
+    }
+
+
+
+    static class Program {
+        public static LinkedList reverseLinkedList(LinkedList head) {
+            // Write your code here.
+            LinkedList tail = null;
+            while (head != null) {
+                LinkedList next = head.next;
+                head.next = tail;
+                tail = head;
+                head = next;
+            }
+            return tail;
+        }
+
+        static class LinkedList {
+            int value;
+            LinkedList next = null;
+
+            public LinkedList(int value) {
+                this.value = value;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static class Program1 {
+        static class DoublyLinkedList {
+            public Node head;
+            public Node tail;
+
+            public void setHead(Node node) {
+                // Write your code here.
+                if(head != null) {
+                    head.prev = node;
+                } else {
+                    head = node;
+                }
+                head = node;
+            }
+
+            public void insertAfter(Node node, Node nodeToInsert) {
+                // Write your code here.
+                nodeToInsert.next = node.next;
+                node.next = nodeToInsert;
+                nodeToInsert.prev = node;
+
+                if(nodeToInsert.next != null) {
+                    nodeToInsert.next.prev = nodeToInsert;
+                }
+            }
+
+            /**
+             *
+             */
+            void append(int new_data)
+            {
+                /* 1. allocate node
+                 * 2. put in the data */
+                Node new_node = new Node(new_data);
+
+                Node last = head; /* used in step 5*/
+                /* 3. This new node is going to be the last node, so
+                 * make next of it as NULL*/
+                new_node.next = null;
+                /* 4. If the Linked List is empty, then make the new
+                 * node as head */
+                if (head == null) {
+                    new_node.prev = null;
+                    head = new_node;
+                    return;
+                }
+                /* 5. Else traverse till the last node */
+                while (last.next != null)
+                    last = last.next;
+                /* 6. Change the next of last node */
+                last.next = new_node;
+                /* 7. Make last node as previous of new node */
+                new_node.prev = last;
+            }
+
+            /**
+             *
+             * @param node
+             */
+            public void setTail(Node node) {
+                // Write your code here.
+                Node last = head;
+                node.next = null;
+
+                if (head == null) {
+                    node.prev = null;
+                    head = node;
+                    return;
+                } else {
+                    while (last.next != null) {
+                        last = last.next;
+                    }
+                    last.next = node;
+                }
+                node.prev = last;
+            }
+
+            public void insertBefore(Node node, Node nodeToInsert) {
+                // Write your code here.
+            }
+
+
+
+            public void insertAtPosition(int position, Node nodeToInsert) {
+                // Write your code here.
+            }
+
+            public void removeNodesWithValue(int value) {
+                // Write your code here.
+            }
+
+            public void remove(Node node) {
+                // Write your code here.
+            }
+
+            public boolean containsNodeWithValue(int value) {
+                // Write your code here.
+                return false;
+            }
+        }
+
+        // Do not edit the class below.
+        static class Node {
+            public int value;
+            public Node prev;
+            public Node next;
+
+            public Node(int value) {
+                this.value = value;
+            }
+        }
     }
 
     public static String dna(String dna) {
