@@ -84,26 +84,72 @@ public class Solution {
 //        System.out.println(collect);
 
 
+        
+        
+
+
     }
 
-
-
-    static class Program {
-        public static LinkedList reverseLinkedList(LinkedList head) {
+    static class Program2 {
+        public static void removeKthNodeFromEnd(LinkedList head, int k) {
             // Write your code here.
-            LinkedList tail = null;
-            while (head != null) {
-                LinkedList next = head.next;
-                head.next = tail;
-                tail = head;
-                head = next;
+            int count = 1;
+            LinkedList current = head;
+
+            while (current.next != null) {
+                current = current.next;
+                count++;
             }
-            return tail;
+            int pointToRemove = count - k +1;
+            int loop = 1;
+
+            while (loop < pointToRemove) {
+                current = current.next;
+                loop++;
+            }
+            current.next = current.next.next;
         }
 
         static class LinkedList {
             int value;
             LinkedList next = null;
+
+            public LinkedList(int value) {
+                this.value = value;
+            }
+        }
+    }
+
+    static class Program3 {
+        public static void removeKthNodeFromEnd(LinkedList head, int k) {
+
+            LinkedList first = head;
+            LinkedList second = head;
+            int counter = 1;
+            while (counter <= k) {
+                second = second.next;
+                counter ++;
+            }
+            if (second == null) {
+
+                head.value = head.next.value;
+                head.next = head.next.next;
+                return;
+            }
+            while (second.next != null) {
+                first = first.next;
+                second = second.next;
+            }
+            first.next = first.next.next;
+        }
+
+
+
+        static class LinkedList {
+            int value;
+            LinkedList next = null;
+
+
 
             public LinkedList(int value) {
                 this.value = value;
@@ -132,19 +178,28 @@ public class Solution {
 
 
 
+    static class Program {
+        public static LinkedList reverseLinkedList(LinkedList head) {
+            // Write your code here.
+            LinkedList tail = null;
+            while (head != null) {
+                LinkedList next = head.next;
+                head.next = tail;
+                tail = head;
+                head = next;
+            }
+            return tail;
+        }
 
+        static class LinkedList {
+            int value;
+            LinkedList next = null;
 
-
-
-
-
-
-
-
-
-
-
-
+            public LinkedList(int value) {
+                this.value = value;
+            }
+        }
+    }
 
     static class Program1 {
         static class DoublyLinkedList {
