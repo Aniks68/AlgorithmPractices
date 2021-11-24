@@ -84,11 +84,105 @@ public class Solution {
 //        System.out.println(collect);
 
 
+        int[] builds = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
+        int[] builds2 = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
+        System.out.println(sunsetViews(builds, "EAST"));
+        System.out.println(sunsetViews(builds2, "WEST"));
         
         
 
 
     }
+
+    public static ArrayList<Integer> sunsetViews(int[] buildings, String direction) {
+        // Write your code here.
+        ArrayList<Integer> tall = new ArrayList<>();
+        if (buildings.length <1) return tall;
+
+        if (direction.equals("EAST")) {
+            for (int i = 0; i < buildings.length; i++) {
+                int count = 0;
+                for (int j = i+1; j < buildings.length; j++) {
+                    if (buildings[i] > buildings[j]) {
+                        count++;
+                    }
+                }
+                if (count == buildings.length -i -1) {
+                    tall.add(i);
+                }
+            }
+        } else {
+//            tall.add(0);
+//            int lastInput = buildings[0];
+//            for( int i = 1; i < buildings.length; i++ )
+//            {
+//                if( buildings[i] > buildings[i - 1] && buildings[i] > lastInput )
+//                {
+//                    tall.add(i);
+//                    lastInput = buildings[i];
+//                }
+//            }
+            for (int i = 0; i < buildings.length; i++) {
+                int count = 0;
+                for (int j = i-1; j >= 0; j--) {
+                    if (buildings[i] > buildings[j]) {
+                        count++;
+                    }
+                }
+                if (count == buildings.length -i -1) {
+                    tall.add(i);
+                }
+            }
+
+//            for (int i = buildings.length-1; i >= 0; i--) {
+//                int count = 0;
+//                for (int j = i-1; j >= 0; j--) {
+//                    if (buildings[i] > buildings[j]) {
+//                        count++;
+//                    }
+//                }
+//                if (count == buildings.length -i -1) {
+//                    tall.add(i);
+//                }
+//            }
+        }
+
+        return tall;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     static class Program2 {
         public static void removeKthNodeFromEnd(LinkedList head, int k) {
@@ -150,50 +244,6 @@ public class Solution {
             LinkedList next = null;
 
 
-
-            public LinkedList(int value) {
-                this.value = value;
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    static class Program {
-        public static LinkedList reverseLinkedList(LinkedList head) {
-            // Write your code here.
-            LinkedList tail = null;
-            while (head != null) {
-                LinkedList next = head.next;
-                head.next = tail;
-                tail = head;
-                head = next;
-            }
-            return tail;
-        }
-
-        static class LinkedList {
-            int value;
-            LinkedList next = null;
 
             public LinkedList(int value) {
                 this.value = value;
