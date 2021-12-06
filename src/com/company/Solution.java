@@ -7,6 +7,9 @@ import java.net.Socket;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
 
 public class Solution {
 
@@ -82,17 +85,91 @@ public class Solution {
 //            }
 //        }).collect(Collectors.toList());
 //        System.out.println(collect);
+//        int[] builds = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
+//        int[] builds2 = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
+//        System.out.println(sunsetViews(builds, "EAST"));
+//        System.out.println(sunsetViews(builds2, "WEST"));
+        int[] exampleTest1 = new int[]{Integer.MAX_VALUE, 0, 1};
+        System.out.println(find(exampleTest1));
 
-
-        int[] builds = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
-        int[] builds2 = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
-        System.out.println(sunsetViews(builds, "EAST"));
-        System.out.println(sunsetViews(builds2, "WEST"));
-        
-        
-
+        System.out.println(countBinarySubstrings("00110"));
 
     }
+
+    public static int countBinarySubstrings(String s) {
+//        String[] strArr = s.split("");
+//        int count = 0;
+//        for (int i = 0; i < strArr.length-2; i++) {
+//            if ((!strArr[i].equals(strArr[i+1])) || ((strArr[i].equals(strArr[i+1]) && (strArr[i+2].equals(strArr[i+3]))))) {
+//                count++;
+//            }
+//        }
+//        return count;
+        int current = 1, previous = 0, ans = 0;
+        for (int i = 1; i < s.length(); i++) {
+            if(s.charAt(i) == s.charAt(i-1)){
+                current++;
+            } else {
+                ans += Math.min(current, previous);
+                previous = current;
+                current = 1;
+            }
+        } return ans + Math.min(current, previous);
+    }
+
+    public static int find(int[] integers) {
+        List<Integer> evenNum = new ArrayList<>();
+        List<Integer> oddNum = new ArrayList<>();
+        Integer outlier = null;
+
+        for (int i : integers) {
+            if (i%2 == 0) {
+                evenNum.add(i);
+            } else if (i % 2 == 1) {
+                oddNum.add(i);
+            }
+        }
+
+        if (evenNum.size() == 1) {
+            outlier = evenNum.get(0);
+        } else if (oddNum.size() == 1){
+            outlier = oddNum.get(0);
+        }
+        return outlier;
+
+//        int current = 1, previous = 0, ans = 0;
+//        for (int i = 1; i < s.length(); i++) {
+//            if(s.charAt(i) == s.charAt(i-1)){
+//                current++;
+//            } else {
+//                ans += Math.min(current, previous);
+//                previous = current;
+//                current = 1;
+//            }
+//        } return ans + Math.min(current, previous);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static ArrayList<Integer> sunsetViews(int[] buildings, String direction) {
         // Write your code here.
@@ -149,40 +226,6 @@ public class Solution {
 
         return tall;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     static class Program2 {
         public static void removeKthNodeFromEnd(LinkedList head, int k) {
