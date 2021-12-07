@@ -89,12 +89,65 @@ public class Solution {
 //        int[] builds2 = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
 //        System.out.println(sunsetViews(builds, "EAST"));
 //        System.out.println(sunsetViews(builds2, "WEST"));
-        int[] exampleTest1 = new int[]{Integer.MAX_VALUE, 0, 1};
-        System.out.println(find(exampleTest1));
-
-        System.out.println(countBinarySubstrings("00110"));
+//        int[] exampleTest1 = new int[]{Integer.MAX_VALUE, 0, 1};
+//        System.out.println(find(exampleTest1));
+//        System.out.println(countBinarySubstrings("00110"));
+//        assertEquals(new ArrayList<ArrayList<String>>(Arrays.asList(new ArrayList<String>(Arrays.asList("1", "two was here", "3")),
+//                        new ArrayList<String>(Arrays.asList("4", "5", "6"))));
+        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
 
     }
+
+    public static ArrayList<ArrayList<String>> parseCSV(String csv, String separator, String quote) {
+        ArrayList<ArrayList<String>> finArrList = new ArrayList<>();
+
+        String[] strArr = csv.split("\n");
+
+        for(String el : strArr) {
+            String[] secondSplit = el.split(separator);
+            ArrayList<String> secondList = new ArrayList<>();
+            for(String i : secondSplit) {
+                if(i.startsWith(quote)) {
+                    StringBuilder sb = new StringBuilder(i.substring(1, i.length()-1));
+                    i = String.valueOf(sb);
+                }
+                secondList.add(i);
+            }
+            finArrList.add(secondList);
+        }
+
+        return finArrList;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static int countBinarySubstrings(String s) {
 //        String[] strArr = s.split("");
@@ -148,28 +201,6 @@ public class Solution {
 //            }
 //        } return ans + Math.min(current, previous);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static ArrayList<Integer> sunsetViews(int[] buildings, String direction) {
         // Write your code here.
