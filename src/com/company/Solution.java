@@ -101,6 +101,35 @@ public class Solution {
 
     public static String[] dirReduc(String[] arr) {
         // Your code here.
+//        List<String> finAns = new ArrayList<>();
+//        for(int i =0; i < arr.length-1; i++) {
+//            if (arr[i].equals("\"NORTH\"")) {
+//                if ((arr[i + 1].equals("\"EAST\"")) || (arr[i + 1].equals("\"WEST\"")) || (arr[i + 1].equals("\"NORTH\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//
+//            if (arr[i].equals("\"SOUTH\"")) {
+//                if ((arr[i + 1].equals("\"EAST\"")) || (arr[i + 1].equals("\"WEST\"")) || (arr[i + 1].equals("\"SOUTH\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//
+//            if (arr[i].equals("\"EAST\"")) {
+//                if ((arr[i + 1].equals("\"NORTH\"")) || (arr[i + 1].equals("\"SOUTH\"")) || (arr[i + 1].equals("\"EAST\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//
+//            if (arr[i].equals("\"WEST\"")) {
+//                if ((arr[i + 1].equals("\"NORTH\"")) || (arr[i + 1].equals("\"SOUTH\"")) || (arr[i + 1].equals("\"WEST\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//        }
+//        return finAns.toArray(new String[finAns.size()]);
+////        return new String[] {};
+            // Your code here.
         if (arr == null || arr.length <= 1) {
             return arr;
         }
