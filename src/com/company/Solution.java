@@ -95,9 +95,42 @@ public class Solution {
 //        assertEquals(new ArrayList<ArrayList<String>>(Arrays.asList(new ArrayList<String>(Arrays.asList("1", "two was here", "3")),
 //                        new ArrayList<String>(Arrays.asList("4", "5", "6"))));
 //        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
-        System.out.println(dirReduc(new String[]{"NORTH", "WEST", "SOUTH", "EAST"}));
+//        System.out.println(dirReduc(new String[]{"NORTH", "WEST", "SOUTH", "EAST"}));
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static String[] dirReduc(String[] arr) {
         // Your code here.
@@ -151,53 +184,6 @@ public class Solution {
             return dirReduc(newArr);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static ArrayList<ArrayList<String>> parseCSV(String csv, String separator, String quote) {
         ArrayList<ArrayList<String>> finArrList = new ArrayList<>();
