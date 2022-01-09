@@ -94,8 +94,95 @@ public class Solution {
 //        System.out.println(countBinarySubstrings("00110"));
 //        assertEquals(new ArrayList<ArrayList<String>>(Arrays.asList(new ArrayList<String>(Arrays.asList("1", "two was here", "3")),
 //                        new ArrayList<String>(Arrays.asList("4", "5", "6"))));
-        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
+//        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
+//        System.out.println(dirReduc(new String[]{"NORTH", "WEST", "SOUTH", "EAST"}));
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static String[] dirReduc(String[] arr) {
+        // Your code here.
+//        List<String> finAns = new ArrayList<>();
+//        for(int i =0; i < arr.length-1; i++) {
+//            if (arr[i].equals("\"NORTH\"")) {
+//                if ((arr[i + 1].equals("\"EAST\"")) || (arr[i + 1].equals("\"WEST\"")) || (arr[i + 1].equals("\"NORTH\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//
+//            if (arr[i].equals("\"SOUTH\"")) {
+//                if ((arr[i + 1].equals("\"EAST\"")) || (arr[i + 1].equals("\"WEST\"")) || (arr[i + 1].equals("\"SOUTH\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//
+//            if (arr[i].equals("\"EAST\"")) {
+//                if ((arr[i + 1].equals("\"NORTH\"")) || (arr[i + 1].equals("\"SOUTH\"")) || (arr[i + 1].equals("\"EAST\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//
+//            if (arr[i].equals("\"WEST\"")) {
+//                if ((arr[i + 1].equals("\"NORTH\"")) || (arr[i + 1].equals("\"SOUTH\"")) || (arr[i + 1].equals("\"WEST\""))) {
+//                    finAns.add(arr[i + 1]);
+//                }
+//            }
+//        }
+//        return finAns.toArray(new String[finAns.size()]);
+////        return new String[] {};
+            // Your code here.
+        if (arr == null || arr.length <= 1) {
+            return arr;
+        }
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (("NORTH".equals(arr[i]) && "SOUTH".equals(arr[i + 1])) ||
+                    ("SOUTH".equals(arr[i]) && "NORTH".equals(arr[i + 1])) ||
+                    ("EAST".equals(arr[i]) && "WEST".equals(arr[i + 1])) ||
+                    ("WEST".equals(arr[i]) && "EAST".equals(arr[i + 1]))) {
+                arr[i] = null;
+                arr[i + 1] = null;
+            }
+        }
+        final String[] newArr = Arrays.stream(arr)
+                .filter(s -> s != null)
+                .toArray(String[]::new);
+        if (newArr.length == arr.length) {
+            return arr;
+        } else {
+            return dirReduc(newArr);
+        }
     }
 
     public static ArrayList<ArrayList<String>> parseCSV(String csv, String separator, String quote) {
@@ -118,36 +205,6 @@ public class Solution {
 
         return finArrList;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static int countBinarySubstrings(String s) {
 //        String[] strArr = s.split("");
