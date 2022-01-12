@@ -25,6 +25,16 @@ public class LinkedList {
         System.out.println("Node " + node.toString()+ " has been created!");
     }
 
+    public void addHead(int data) {
+        Node1 node = new Node1(data);
+        if (head != null) {
+            Node1 curr = head;
+            node.setNextNode(curr);
+            this.setHead(node);
+            System.out.println("New head of data: " + node + " has been set.");
+        }
+    }
+
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         list.add(15);
@@ -32,6 +42,7 @@ public class LinkedList {
         list.add(25);
         list.add(30);
         list.add(35);
+        list.addHead(95);
         System.out.println(list);
         System.out.println(list.getHead());
         System.out.println(list.getHead().getData());
