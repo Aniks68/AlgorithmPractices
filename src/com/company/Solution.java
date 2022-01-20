@@ -97,39 +97,69 @@ public class Solution {
 //        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
 //        System.out.println(dirReduc(new String[]{"NORTH", "WEST", "SOUTH", "EAST"}));
 
+        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println(singlifyArr(arr, 1));
+    }
+    /*
+    QUESTION 1
+    Given an array of 2k integers (for some integer k, which will be betwen 0 and 5 inclusive),
+    perform the following operations until the array contains only one element:
+            * <p>
+* On the 1st, 3rd, 5th, etc. iterations (1-based) replace each pair of consecutive elements with their sum;
+* On the 2nd, 4th, 6th, etc. iterations replace each pair of consecutive elements with their product.
+            * After the algorithm has finished, there will be a single element left in the array. Return that element.
+* <p>
+* Specification
+* Challenge.packArray(arr)
+            * <p>
+* Parameters
+* arr: Integer[] - An array of integers to be packed
+* Return Value
+* Integer - The final product
+* Constraints
+* arr.length == 2k
+* 0 ≤ k ≤ 5
+            * -9 ≤ arr[i] ≤ 99
+            * Example:
+            * For arr = [1, 2, 3, 4, 5, 6, 7, 8], the output should be 186.
+            * We have [1, 2, 3, 4, 5, 6, 7, 8] -> [3, 7, 11, 15] -> [21, 165] -> [186], so the answer is 186.
+            */
+
+    public static String singlifyArr(int[] arr, int count) {
+
+        int position = 0;
+        int[] newArr = new int[arr.length/2];
+        if (count%2 > 0) {
+            oddIteration(arr, position, newArr);
+            count++;
+            return newArr.length > 1 ? singlifyArr(newArr, count) : "Final answer: " + Arrays.toString(newArr);
+         }
+
+        if (count%2 < 1) {
+            evenIteration(arr, position, newArr);
+            count++;
+            return newArr.length > 1 ? singlifyArr(newArr, count) : "Final answer: " + Arrays.toString(newArr);
+        }
+        return "Final answer: " + Arrays.toString(newArr);
     }
 
+    private static void evenIteration(int[] arr, int position, int[] newArr) {
+        for (int i = 0; i < arr.length-1; i+=2) {
+            int num = (arr[i] * arr[i+1]);
+            System.out.println(num);
+            newArr[position] = num;
+            position++;
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private static void oddIteration(int[] arr, int position, int[] newArr) {
+        for (int i = 0; i < arr.length-1; i+=2) {
+            int num = (arr[i] + arr[i+1]);
+            System.out.println(num);
+            newArr[position] = num;
+            position++;
+        }
+    }
 
 
     public static String[] dirReduc(String[] arr) {
