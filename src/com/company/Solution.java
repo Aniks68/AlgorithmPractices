@@ -97,9 +97,103 @@ public class Solution {
 //        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
 //        System.out.println(dirReduc(new String[]{"NORTH", "WEST", "SOUTH", "EAST"}));
 
-        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
-        System.out.println(singlifyArr(arr, 1));
+//        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+//        int count = 1;
+//        System.out.println(singlifyArr(arr,  count));
+
+        int[] arr = new int[]{24, 85, 0};
+        System.out.println(arrayPacking(arr));
+        System.out.println(numberToRoman(1666));
     }
+
+    /*
+     * You are given an array of up to four non-negative integers, each less than 256.
+     * Your task is to pack these integers into one number M so that the first element of the array occupies the first (or least significant) 8 bits of M; the second element occupies next 8 bits, and so on.
+     * Return the obtained integer M as unsigned integer.
+     * Note
+     * As indicated the first 8 bits are the least significant bits of M, meaning the right-most bits of the integer.
+     * For further clarification see the following example.
+     * Specification
+     * Challenge.arrayPacking(array)
+     * Parameters
+     * array: List<Integer> - up to four unsigned integers
+     * Return Value
+     * Integer - an unsigned integer
+     * Constraints
+     * array.length == 3
+     * 0 ≤ array[i] < 256
+     * Example
+     * For [24, 85, 0] the output should be 21784
+     * [24, 85, 0 ] - The initial array
+     * [00011000, 01010101, 00000000] - Translate each number to Binary
+     * 000000000101010100011000 - Compact to a single number
+     * 21784 - Translate to Decimal
+     */
+
+    public static int arrayPacking(int[] arr) {
+    String strArr = "";
+
+    for(int i = arr.length - 1; i >= 0; i--) {
+        strArr += String.format("%8s", Integer.toBinaryString(arr[i])).replace(' ', '0');
+        System.out.println(strArr);
+    };
+
+    int decimal=Integer.parseInt(strArr,2);
+    System.out.println("Ans: " + decimal);
+
+    return decimal;
+}
+
+    /* Create a function taking a positive integer as its parameter and returning a string
+containing the Roman Numeral representation of that integer.
+Modern Roman numerals are written by expressing each digit
+separately starting with the left most digit and skipping any digit
+with a value of zero. In Roman numerals 1990 is rendered: 1000=M, 900=CM,
+90=XC; resulting in MCMXC. 2008 is written as 2000=MM, 8=VIII; or MMVIII.
+1666 uses each Roman symbol in descending order: MDCLXVI.*/
+
+    public static String numberToRoman(int num) {
+
+        int[] values = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        String[] romanLiterals = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+
+        StringBuilder roman = new StringBuilder();
+
+        for(int i=0;i<values.length;i++) {
+            while(num >= values[i]) {
+                num -= values[i];
+                roman.append(romanLiterals[i]);
+            }
+        }
+        return roman.toString();
+    }
+
+    /*
+    QUESTION 5
+     * <===========MONDAY===========>
+     * Task
+     * Write a program to determine if a string contains all unique characters. Return true if it does and false otherwise.
+     *
+     * The string may contain any of the 128 ASCII characters.
+     *
+     * Specification
+     * Challenge.hasUniqueChars(str)
+     * Parameters
+     * str: String - The string that may or may not contain all unique characters
+     *
+     * Return Value
+     * boolean - True if all characters in the string are unique
+     *
+     * Examples
+     * str Return Value
+     * "abcdefg" true
+     * "abbcdefg" false
+     */
+
+    public static boolean uniqueXters
+
+
+
     /*
     QUESTION 1
     Given an array of 2k integers (for some integer k, which will be betwen 0 and 5 inclusive),
@@ -125,42 +219,34 @@ public class Solution {
             * We have [1, 2, 3, 4, 5, 6, 7, 8] -> [3, 7, 11, 15] -> [21, 165] -> [186], so the answer is 186.
             */
 
-    public static String singlifyArr(int[] arr, int count) {
+    public static int singlifyArr(int[] arr, int count) {
 
         int position = 0;
         int[] newArr = new int[arr.length/2];
         if (count%2 > 0) {
             oddIteration(arr, position, newArr);
-            count++;
-            return newArr.length > 1 ? singlifyArr(newArr, count) : "Final answer: " + Arrays.toString(newArr);
          }
 
         if (count%2 < 1) {
             evenIteration(arr, position, newArr);
-            count++;
-            return newArr.length > 1 ? singlifyArr(newArr, count) : "Final answer: " + Arrays.toString(newArr);
         }
-        return "Final answer: " + Arrays.toString(newArr);
+        count++;
+        return newArr.length > 1 ? singlifyArr(newArr, count) : (newArr[0]);
     }
 
     private static void evenIteration(int[] arr, int position, int[] newArr) {
         for (int i = 0; i < arr.length-1; i+=2) {
-            int num = (arr[i] * arr[i+1]);
-            System.out.println(num);
-            newArr[position] = num;
+            newArr[position] = (arr[i] * arr[i+1]);
             position++;
         }
     }
 
     private static void oddIteration(int[] arr, int position, int[] newArr) {
         for (int i = 0; i < arr.length-1; i+=2) {
-            int num = (arr[i] + arr[i+1]);
-            System.out.println(num);
-            newArr[position] = num;
+            newArr[position] = (arr[i] + arr[i+1]);
             position++;
         }
     }
-
 
     public static String[] dirReduc(String[] arr) {
         // Your code here.
@@ -712,6 +798,16 @@ public class Solution {
         }
         return roman.toString();
     }
+
+    /* QUESTION 4
+
+    Given a sequence of numbers, find the largest pair sum in the sequence.
+
+    For example
+
+    [10, 14, 2, 23, 19] --> 42 (= 23 + 19)
+    [99, 2, 2, 23, 19] --> 122 (= 99 + 23)
+    Input sequence contains minimum two elements and every element is an integer.*/
 
     public static int largestPairSum(int[] numbers){
         Arrays.sort(numbers);
