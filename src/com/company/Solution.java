@@ -106,6 +106,44 @@ public class Solution {
 //        System.out.println(numberToRoman(1666));
 //        System.out.println(uniqueXters("abbcdefg"));
 //        System.out.println(atmMachine(490));
+
+        System.out.println(lowHigh("3 4 2 9 -4"));
+    }
+
+    /*
+    QUESTION 8
+    When working with binary numbers, we can use bitmasks to turn on/off certain bits.
+
+    For example, if we take the binary representation of the decimal value 220 (1101 1100) and we wanted to extract the higher 4 bits, we could use a bitmask with the boolean AND operation:
+
+    1101 1100 (220)
+    AND 1111 0000 (240)
+    _________
+    1101 0000 (208)
+    Put simply, 220 AND 240 is 208. 240 acts as our bitmask while 208 is the value of the high order bits stored by the binary representation of the decimal value 220.
+
+    Task
+    Let's write a function called highOrderBitmask that, when given a word size in bits, will return us the decimal value for the bitmask we'll need to extract the higher order bits out of a word of that same bit size.
+
+
+
+    In our example above, the word size was 8 bits and we wanted to extract the most signficiant half or the left-most 4 bits.
+
+
+
+    All given word sizes will be even
+     */
+
+    /*
+    * QUESTION 7
+    From a string of numbers, return the highest and the lowest value as a string. For example:
+    "3 4 2 9 -4" -> "-4 9"
+    * */
+
+    public static String lowHigh(String numbers) {
+        String[] strArr = numbers.split(" ");
+        List<Integer> collect = Arrays.stream(strArr).map(Integer::valueOf).sorted().collect(toList());
+        return collect.get(0) + " " + collect.get(collect.size()-1);
     }
 
     /*
