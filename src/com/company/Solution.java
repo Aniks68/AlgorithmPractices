@@ -101,11 +101,11 @@ public class Solution {
 //        int count = 1;
 //        System.out.println(singlifyArr(arr,  count));
 
-        int[] arr = new int[]{24, 85, 0};
-        System.out.println(arrayPacking(arr));
-        System.out.println(numberToRoman(1666));
-        System.out.println(uniqueXters("abbcdefg"));
-        System.out.println(atmMachine(490));
+//        int[] arr = new int[]{24, 85, 0};
+//        System.out.println(arrayPacking(arr));
+//        System.out.println(numberToRoman(1666));
+//        System.out.println(uniqueXters("abbcdefg"));
+//        System.out.println(atmMachine(490));
     }
 
     /*
@@ -134,14 +134,10 @@ public class Solution {
 
     public static int arrayPacking(int[] arr) {
     String strArr = "";
-
     for(int i = arr.length - 1; i >= 0; i--) {
         strArr += String.format("%8s", Integer.toBinaryString(arr[i])).replace(' ', '0');
     };
-
     int decimal=Integer.parseInt(strArr,2);
-    System.out.println("Ans: " + decimal);
-
     return decimal;
 }
 
@@ -193,11 +189,8 @@ with a value of zero. In Roman numerals 1990 is rendered: 1000=M, 900=CM,
 
     public static boolean uniqueXters(String word) {
         for (int i = 0; i < word.length(); i++) {
-            int flag = 0;
             for (int j = 0; j < word.length(); j++) {
-                // checking if two characters are equal
                 if (word.charAt(i) == word.charAt(j) && i != j) {
-                    flag = 1;
                     return false;
                 }
             }
