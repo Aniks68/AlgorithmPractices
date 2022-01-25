@@ -111,6 +111,21 @@ public class Solution {
     }
 
     /*
+    * Return the number (count) of vowels in the given string.
+    We will consider a, e, i, o, u as vowels for this Kata (but not y).
+    The input string will only consist of lower case letters and/or spaces.
+    */
+    public static int vowelCount(String words) {
+        List<String> count = new ArrayList<>();
+        List<String> vowels = new ArrayList<String>(Arrays.asList("a", "e", "i", "o", "u"));
+
+        for(String ch : words.split("")) {
+            vowels.contains(ch) ? count.add(ch) : break;
+        }
+        return count[0];
+    }
+
+    /*
     QUESTION 8
     When working with binary numbers, we can use bitmasks to turn on/off certain bits.
 
