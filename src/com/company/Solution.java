@@ -107,7 +107,8 @@ public class Solution {
 //        System.out.println(uniqueXters("abbcdefg"));
 //        System.out.println(atmMachine(490));
 
-        System.out.println(lowHigh("3 4 2 9 -4"));
+//        System.out.println(lowHigh("3 4 2 9 -4"));
+        System.out.println(vowelCount("superstitious"));
     }
 
     /*
@@ -120,9 +121,11 @@ public class Solution {
         List<String> vowels = new ArrayList<String>(Arrays.asList("a", "e", "i", "o", "u"));
 
         for(String ch : words.split("")) {
-            vowels.contains(ch) ? count.add(ch) : break;
+            if(vowels.contains(ch)) {
+                count.add(ch);
+            }
         }
-        return count[0];
+        return count.size();
     }
 
     /*
