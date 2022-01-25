@@ -112,10 +112,19 @@ public class Solution {
     }
 
     /*
+    * In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
+    Example
+    Kata.filterList(Arrays.asList(1, 2, "a", "b")) => Arrays.asList(1,2)
+    Kata.filterList(Arrays.asList(1, 2, "a", "b", 0, 15)) => Arrays.asList(1,2,0,15)
+    Kata.filterList(Arrays.asList(1, 2, "a", "b", "aasf", "1", "123", 231)) => Arrays.asList(1, 2, 231)
+    * */
+
+    /*
     * Return the number (count) of vowels in the given string.
     We will consider a, e, i, o, u as vowels for this Kata (but not y).
     The input string will only consist of lower case letters and/or spaces.
     */
+
     public static int vowelCount(String words) {
         List<String> count = new ArrayList<>();
         List<String> vowels = new ArrayList<String>(Arrays.asList("a", "e", "i", "o", "u"));
