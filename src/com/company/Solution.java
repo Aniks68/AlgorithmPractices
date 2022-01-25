@@ -108,16 +108,21 @@ public class Solution {
 //        System.out.println(atmMachine(490));
 
 //        System.out.println(lowHigh("3 4 2 9 -4"));
-        System.out.println(vowelCount("superstitious"));
+//        System.out.println(vowelCount("superstitious"));
+        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
     }
 
     /*
-    * In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
+    In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
     Example
     Kata.filterList(Arrays.asList(1, 2, "a", "b")) => Arrays.asList(1,2)
     Kata.filterList(Arrays.asList(1, 2, "a", "b", 0, 15)) => Arrays.asList(1,2,0,15)
     Kata.filterList(Arrays.asList(1, 2, "a", "b", "aasf", "1", "123", 231)) => Arrays.asList(1, 2, 231)
-    * */
+    */
+
+    public static List<?> filterList(List<?> list) {
+        return list.stream().filter(x -> x.getClass().equals(Integer.class)).collect(Collectors.toList());
+    }
 
     /*
     * Return the number (count) of vowels in the given string.
