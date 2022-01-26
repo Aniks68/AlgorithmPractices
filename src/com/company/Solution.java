@@ -106,10 +106,10 @@ public class Solution {
 //        System.out.println(numberToRoman(1666));
 //        System.out.println(uniqueXters("abbcdefg"));
 //        System.out.println(atmMachine(490));
-
 //        System.out.println(lowHigh("3 4 2 9 -4"));
 //        System.out.println(vowelCount("superstitious"));
-        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
+//        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
+        System.out.println(highOrderBitmask(220));
     }
 
     /*
@@ -146,25 +146,30 @@ public class Solution {
     QUESTION 8
     When working with binary numbers, we can use bitmasks to turn on/off certain bits.
 
-    For example, if we take the binary representation of the decimal value 220 (1101 1100) and we wanted to extract the higher 4 bits, we could use a bitmask with the boolean AND operation:
+    For example, if we take the binary representation of the decimal value 220 (1101 1100) and we wanted to extract the higher 4 bits,
+    we could use a bitmask with the boolean AND operation:
 
     1101 1100 (220)
     AND 1111 0000 (240)
     _________
     1101 0000 (208)
-    Put simply, 220 AND 240 is 208. 240 acts as our bitmask while 208 is the value of the high order bits stored by the binary representation of the decimal value 220.
+    Put simply, 220 AND 240 is 208. 240 acts as our bitmask while 208 is the value of the high order bits stored by the
+    binary representation of the decimal value 220.
 
     Task
-    Let's write a function called highOrderBitmask that, when given a word size in bits, will return us the decimal value for the bitmask we'll need to extract the higher order bits out of a word of that same bit size.
-
-
-
-    In our example above, the word size was 8 bits and we wanted to extract the most signficiant half or the left-most 4 bits.
-
-
+    Let's write a function called highOrderBitmask that, when given a word size in bits, will return us the decimal value for the
+    bitmask we'll need to extract the higher order bits out of a word of that same bit size.
+    In our example above, the word size was 8 bits, and we wanted to extract the most significant half or the left-most 4 bits.
 
     All given word sizes will be even
      */
+
+    public static int highOrderBitmask(int num) {
+        System.out.println(Integer.toBinaryString(num));
+        System.out.println(Integer.toBinaryString(240));
+        System.out.println(Integer.parseInt("11010000", 2));
+        return 0;
+    }
 
     /*
     * QUESTION 7
@@ -422,6 +427,18 @@ with a value of zero. In Roman numerals 1990 is rendered: 1000=M, 900=CM,
         } else {
             return dirReduc(newArr);
         }
+
+        /*
+        List<String> dirs = new ArrayList<String>(Arrays.asList(arr));
+      for (int i = 0; i + 1 < dirs.size(); i++) {
+        if ("NORTHSOUTH,SOUTHNORTH,EASTWEST,WESTEAST".contains(dirs.get(i) + dirs.get(i + 1))) {
+          dirs.remove(i + 1);
+          dirs.remove(i);
+          i = -1;
+        }
+      }
+      return dirs.toArray(new String[dirs.size()]);
+         */
     }
 
     public static ArrayList<ArrayList<String>> parseCSV(String csv, String separator, String quote) {
