@@ -108,26 +108,52 @@ public class Solution {
 //        System.out.println(atmMachine(490));
 //        System.out.println(lowHigh("3 4 2 9 -4"));
 //        System.out.println(vowelCount("superstitious"));
-        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
-        System.out.println(highOrderBitmask(220));
+//        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
+//        System.out.println(highOrderBitmask(220));
+        String[] processes = new String[]{"gather:field:wheat","bake:flour:bread","mill:wheat:flour"};
+        System.out.println(Arrays.toString(countChange("field", "bread", processes)));
     }
 
     /*
-    [Yesterday 21:30] Bodam Jerry
-    QUESTIION
+
+    QUESTION
     Task
     For this challenge, you will be finding the most efficient set of steps to get from one item to another.Inputs
-    You will write a function which will be provided with a set of processes that each convert from one item to another.These will be provided as an array, with each process in the form of "process_name:from_item:to_item". For example, you might have a process named "smelt" that converts ore into a metal, like this: "smelt:ore:metal".You will also be passed in the initial start item and desired end item for the overall workflow.Note: For simplicity, all processes and items will be simple alphanumeric strings.Output
-    Given these three inputs, your task is to determine which processes will complete the task in the shortest number of steps. Once you have done so, return the names of these processes, in order, as an array.If no steps are needed (because the start and end item is the same), or if you cannot find a valid set of processes to get from the start to the end, return an empty array.Specification
+    You will write a function which will be provided with a set of processes that each convert from one item to another.These will be provided as an array,
+    with each process in the form of "process_name:from_item:to_item". For example, you might have a process named "smelt" that converts ore into a metal,
+    like this: "smelt:ore:metal".You will also be passed in the initial start item and desired end item for the overall workflow.Note: For simplicity,
+    all processes and items will be simple alphanumeric strings.Output
+    Given these three inputs, your task is to determine which processes will complete the task in the shortest number of steps. Once you have done so,
+    return the names of these processes, in order, as an array.If no steps are needed (because the start and end item is the same), or if you cannot find a valid set of
+    processes to get from the start to the end, return an empty array.Specification
     Challenge.countChange(startItem, endItem, tasks)
     Parameters
-    startItem: String - Item to start withendItem: String - Item to try to reachtasks: String[] - A mapping of strings from one item to another in the format "process_name:from_item:to_item"Return Value
+    startItem: String - Item to start withendItem: String - Item to try to reachtasks: String[] - A mapping of strings from one item to another in the
+    format "process_name:from_item:to_item"Return Value
     String[] - A list of processes that convert start item to end item, if it existsExamples
     start_item end_item tasks Return Value
     "field" "bread" ["gather:field:wheat","bake:flour:bread","mill:wheat:flour"] ["gather","mill","bake"]
     "field" "ferrari" ["gather:field:wheat","bake:flour:bread","mill:wheat:flour"] []
     "field" "field" ["gather:field:wheat","bake:flour:bread","mill:wheat:flour"] []
      */
+
+    public static String[] countChange(String startItem, String endItem, String[] processes) {
+        String[] finalProcess = new String[3];
+        for (String el : processes) {
+            String[] split = el.split(":");
+            for(int i = 0; i <split.length; i++) {
+                if(split[i].equals(startItem)) {
+                    finalProcess[0] = split[0];
+                } else if (split[i].equals(endItem)) {
+                    finalProcess[2] = split[0];
+                }
+            }
+        }
+        Arrays.stream(finalProcess).forEach(System.out::println);
+        List<String> items = Arrays.asList(startItem, endItem);
+
+        return finalProcess;
+    }
 
     /*
     In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
