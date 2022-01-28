@@ -111,7 +111,7 @@ public class Solution {
 //        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
 //        System.out.println(highOrderBitmask(220));
         String[] processes = new String[]{"gather:field:wheat","bake:flour:bread","mill:wheat:flour"};
-        System.out.println(Arrays.toString(countChange("field", "ferrari", processes)));
+        System.out.println(Arrays.toString(countChange("field", "bread", processes)));
     }
 
     /*
@@ -152,11 +152,10 @@ public class Solution {
 
         if(testArr[0][2].equals(testArr[1][1]) && testArr[1][2].equals(testArr[2][1])) {
             IntStream.range(0, testArr.length).forEach(i -> finalProcess[i] = testArr[i][0]);
+            return finalProcess;
         }
 
-        System.out.println(Arrays.deepToString(testArr));
-
-        return finalProcess;
+        return new String[] {};
     }
 
     private static void innerSort(String startItem, String endItem, String[][] testArr, String el) {
