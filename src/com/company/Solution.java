@@ -111,7 +111,7 @@ public class Solution {
 //        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
 //        System.out.println(highOrderBitmask(220));
         String[] processes = new String[]{"gather:field:wheat","bake:flour:bread","mill:wheat:flour"};
-        System.out.println(Arrays.toString(countChange("field", "ferrari", processes)));
+        System.out.println(Arrays.toString(countChange("field", "ferrrari", processes)));
     }
 
     /*
@@ -139,26 +139,34 @@ public class Solution {
 
     public static String[] countChange(String startItem, String endItem, String[] processes) {
         String[] finalProcess = new String[3];
-        for (String el : processes) {
-            String[] split = el.split(":");
-            for(int i = 0; i <split.length; i++) {
-                if(startItem.equals(endItem)) {
-                    return new String[]{};
-                }
-                if(split[i].equals(startItem)) {
-                    finalProcess[0] = split[0];
-                } else if (split[i].equals(endItem)) {
-                    finalProcess[2] = split[0];
-                } else {
-                    finalProcess[1] = split[0];
-                }
-            }
+        String[][] testArr = new String[3][];
+        int checkCount = (int) Arrays.stream(processes).filter(el -> el.contains(":" + startItem) || el.contains(":" + endItem)).count();
+
+        if((checkCount <= 1 || checkCount > 3) || startItem.equals(endItem)) {
+            return new String[]{};
         }
 
-        Arrays.stream(finalProcess).forEach(System.out::println);
-        List<String> items = Arrays.asList(startItem, endItem);
+        Arrays.stream(processes).forEach(el -> {
+            innerSort(startItem, endItem, testArr, el);
+        });
+
+        if(testArr[0][2].equals(testArr[1][1]) && testArr[1][2].equals(testArr[2][1])) {
+            IntStream.range(0, testArr.length).forEach(i -> finalProcess[i] = testArr[i][0]);
+        }
+
+        System.out.println(Arrays.deepToString(testArr));
 
         return finalProcess;
+    }
+
+    private static void innerSort(String startItem, String endItem, String[][] testArr, String el) {
+        if (el.contains(":" + startItem)) {
+            testArr[0] = el.split(":");
+        } else if (el.contains(":" + endItem)) {
+            testArr[2] = el.split(":");
+        } else if (!el.contains(":" + startItem) || !el.contains(":+end")) {
+            testArr[1] = el.split(":");
+        }
     }
 
     /*
