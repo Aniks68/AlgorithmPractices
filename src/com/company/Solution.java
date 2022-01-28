@@ -111,7 +111,7 @@ public class Solution {
 //        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
 //        System.out.println(highOrderBitmask(220));
         String[] processes = new String[]{"gather:field:wheat","bake:flour:bread","mill:wheat:flour"};
-        System.out.println(Arrays.toString(countChange("field", "ferrrari", processes)));
+        System.out.println(Arrays.toString(countChange("field", "ferrari", processes)));
     }
 
     /*
