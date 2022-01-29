@@ -138,34 +138,26 @@ public class Solution {
      */
 
     public static String[] countChange(String startItem, String endItem, String[] processes) {
-        String[] finalProcess = new String[3];
-        String[][] testArr = new String[3][];
+        String[] finalProcess = new String[3], noProcess = {};
+        String[][] innerArr = new String[3][];
         int checkCount = (int) Arrays.stream(processes).filter(el -> el.contains(":" + startItem) || el.contains(":" + endItem)).count();
 
-        if((checkCount <= 1 || checkCount > 3) || startItem.equals(endItem)) {
-            return new String[]{};
-        }
+        if((checkCount != 2) || startItem.equals(endItem)) return noProcess;
 
-        Arrays.stream(processes).forEach(el -> {
-            innerSort(startItem, endItem, testArr, el);
-        });
+        Arrays.stream(processes).forEach(el -> {innerSort(startItem, endItem, innerArr, el);});
 
-        if(testArr[0][2].equals(testArr[1][1]) && testArr[1][2].equals(testArr[2][1])) {
-            IntStream.range(0, testArr.length).forEach(i -> finalProcess[i] = testArr[i][0]);
+        if(innerArr[0][2].equals(innerArr[1][1]) && innerArr[1][2].equals(innerArr[2][1])) {
+            IntStream.range(0, innerArr.length).forEach(i -> finalProcess[i] = innerArr[i][0]);
             return finalProcess;
         }
 
-        return new String[] {};
+        return noProcess;
     }
 
-    private static void innerSort(String startItem, String endItem, String[][] testArr, String el) {
-        if (el.contains(":" + startItem)) {
-            testArr[0] = el.split(":");
-        } else if (el.contains(":" + endItem)) {
-            testArr[2] = el.split(":");
-        } else if (!el.contains(":" + startItem) || !el.contains(":+end")) {
-            testArr[1] = el.split(":");
-        }
+    private static void innerSort(String startItem, String endItem, String[][] innerArr, String el) {
+        if (el.contains(":" + startItem)) innerArr[0] = el.split(":");
+        if (el.contains(":" + endItem)) innerArr[2] = el.split(":");
+        if (!el.contains(":" + startItem) || !el.contains(":+end")) innerArr[1] = el.split(":");
     }
 
     /*
