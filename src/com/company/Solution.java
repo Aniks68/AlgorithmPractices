@@ -8,8 +8,11 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+//import java.util.stream.Collectors;
+//import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
+//import static org.graalvm.compiler.phases.common.inlining.walker.InliningIterator.count;
 
 public class Solution {
 
@@ -111,7 +114,8 @@ public class Solution {
 //        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
 //        System.out.println(highOrderBitmask(220));
         String[] processes = new String[]{"gather:field:wheat","bake:flour:bread","mill:wheat:flour"};
-        System.out.println(Arrays.toString(countChange("field", "bread", processes)));
+        List<String> trial = Arrays.asList("gather:field:wheat","mill:wheat:flour","bake:flour:bread");
+        System.out.println((countChange("field", "bread", trial)));
     }
 
     /*
@@ -137,27 +141,28 @@ public class Solution {
     "field" "field" ["gather:field:wheat","bake:flour:bread","mill:wheat:flour"] []
      */
 
-    public static String[] countChange(String startItem, String endItem, String[] processes) {
-        String[] finalProcess = new String[3], noProcess = {};
+    public static List<String> countChange(String startItem, String endItem, List<String> processes) {
+        String[] test = processes.toArray(new String[0]);
+        List<String> finProcess = new ArrayList<String>(), noList = new ArrayList<>();
+
+        String[] finalProcess = new String[3];
         String[][] innerArr = new String[3][];
-        int checkCount = (int) Arrays.stream(processes).filter(el -> el.contains(":" + startItem) || el.contains(":" + endItem)).count();
+        int checkCount = (int) Arrays.stream(test).filter(el -> el.contains(":" + startItem) || el.contains(":" + endItem)).count();
+        final List<String> resultCheck = Arrays.stream(test).filter(el -> el.contains(":" + startItem) || el.contains(":" + endItem)).collect(toList());
 
-        if((checkCount != 2) || startItem.equals(endItem)) return noProcess;
-
-        Arrays.stream(processes).forEach(el -> {innerSort(startItem, endItem, innerArr, el);});
+        if((resultCheck.size() != 2) || startItem.equals(endItem)) return noList;
+        Arrays.stream(test).forEach(el -> {
+            if (el.contains(":" + startItem)) innerArr[0] = el.split(":");
+            if (el.contains(":" + endItem)) innerArr[2] = el.split(":");
+            if (!el.contains(":" + startItem) && !el.contains(":"+endItem)) innerArr[1] = el.split(":");
+        });
 
         if(innerArr[0][2].equals(innerArr[1][1]) && innerArr[1][2].equals(innerArr[2][1])) {
             IntStream.range(0, innerArr.length).forEach(i -> finalProcess[i] = innerArr[i][0]);
-            return finalProcess;
+            finProcess = Arrays.stream(finalProcess).collect(toList());
+            return finProcess;
         }
-
-        return noProcess;
-    }
-
-    private static void innerSort(String startItem, String endItem, String[][] innerArr, String el) {
-        if (el.contains(":" + startItem)) innerArr[0] = el.split(":");
-        if (el.contains(":" + endItem)) innerArr[2] = el.split(":");
-        if (!el.contains(":" + startItem) || !el.contains(":+end")) innerArr[1] = el.split(":");
+        return noList;
     }
 
     /*
