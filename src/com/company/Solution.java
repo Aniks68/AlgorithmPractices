@@ -1,4 +1,6 @@
 package com.company;
+import lombok.Data;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +27,7 @@ public class Solution {
 //        System.out.println(Arrays.toString(arrayJoin(arr, barr)));
 //        System.out.println(Arrays.toString(splitArray(barr, 3, 7)));
 //        System.out.println(isSmooth(barr));
+//        System.out.println(checkPrime("Thunderclaps"));
 //        System.out.println(Arrays.toString(replaceMiddle(arr)));
 //        System.out.println(makeConsecutive(stats));
 //        System.out.println(2>>13);
@@ -114,6 +117,22 @@ public class Solution {
         List<String> trial = Arrays.asList("gather:field:wheat","mill:wheat:flour","bake:flour:bread");
         System.out.println((countChange("field", "bread", trial)));
     }
+
+    public static boolean compare(TreeNode a, TreeNode b) {
+        if(a == null && b == null) return true;
+
+        if(a != null && b != null) return (compare(a.right, b.right) && compare(a.left, b.left) && (a.val == b.val));
+
+        return false;
+    }
+
+    @Data
+    public static class TreeNode {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+    }
+
 
     /*
 
@@ -1021,6 +1040,10 @@ with a value of zero. In Roman numerals 1990 is rendered: 1000=M, 900=CM,
             finAns+=el + " ";
         }
         return finAns;
+    }
+
+    public static boolean checkPrime(String s) {
+        return s.length() == 1 || (s.concat(s).indexOf(s, 1) == s.length());
     }
 
     public static int makeConsecutive(int[] arr) {
