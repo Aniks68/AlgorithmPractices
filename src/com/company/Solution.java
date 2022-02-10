@@ -118,6 +118,19 @@ public class Solution {
         System.out.println((countChange("field", "bread", trial)));
     }
 
+    public static Integer getBitXOR(int a, int b) {
+        StringBuilder bin = new StringBuilder();
+        String number1 = String.format("%04d", Integer.parseInt(Integer.toBinaryString(a)));
+        String number2 = String.format("%04d", Integer.parseInt(Integer.toBinaryString(b)));
+
+        int i = 0;
+        while (i < number1.length()) {
+            bin.append(number1.charAt(i) == number2.charAt(i) ? "0" : "1");
+            i++;
+        }
+        return Integer.parseInt(bin.toString().trim(), 2);
+    }
+
     public static boolean compare(TreeNode a, TreeNode b) {
         if(a == null && b == null) return true;
 
