@@ -113,9 +113,20 @@ public class Solution {
 //        System.out.println(vowelCount("superstitious"));
 //        System.out.println(filterList(Arrays.asList(1, 2, "a", "b", 417, "aasf", -7612, "1", "123", 231)));
 //        System.out.println(highOrderBitmask(220));
-        String[] processes = new String[]{"gather:field:wheat","bake:flour:bread","mill:wheat:flour"};
-        List<String> trial = Arrays.asList("gather:field:wheat","mill:wheat:flour","bake:flour:bread");
-        System.out.println((countChange("field", "bread", trial)));
+//        String[] processes = new String[]{"gather:field:wheat","bake:flour:bread","mill:wheat:flour"};
+//        List<String> trial = Arrays.asList("gather:field:wheat","mill:wheat:flour","bake:flour:bread");
+//        System.out.println((countChange("field", "bread", trial)));
+
+    }
+
+    public static int alertCount(int n, int d, int[] transactions) {
+        boolean dCheck = d % 2 > 0;
+
+        if (dCheck) {
+            for (int i = 0; i < transactions.length; i++) {
+
+            }
+        }
     }
 
     public static Integer getBitXOR(int a, int b) {
