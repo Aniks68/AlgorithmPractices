@@ -120,13 +120,43 @@ public class Solution {
     }
 
     public static int alertCount(int n, int d, int[] transactions) {
-        boolean dCheck = d % 2 > 0;
+        boolean dCheck = (d % 2) < 1;
+        int alertCheck = 0;
 
-        if (dCheck) {
-            for (int i = 0; i < transactions.length; i++) {
-
+        if (dCheck && transactions.length > d) {
+            for (int i = transactions.length-1; i >= d ; i--) {
+                int[] arr = getInts(d, transactions, i);
+                int median = (arr[d/2] + arr[(d/2) -1])/2;
+                if(transactions[i] >= median * 2) {
+                    System.out.println("Here's the one: "+Arrays.toString(arr) + ". Suspicious Even transaction: "
+                            +transactions[i] + ". Median is: " +median);
+                    alertCheck+= 1;
+                }
+            }
+        } else if(!dCheck && transactions.length > d) {
+            for (int i = transactions.length-1; i >= d ; i--) {
+                int[] arr = getInts(d, transactions, i);
+                int median = arr[((int) (d/2))];
+                if(transactions[i] >= median * 2) {
+                    System.out.println("Here's the one: " +Arrays.toString(arr) + ". Suspicious Odd transaction: "
+                            +transactions[i] + ". Median is: " +median);
+                    alertCheck+= 1;
+                }
             }
         }
+        return alertCheck;
+    }
+
+    private static int[] getInts(int d, int[] transactions, int i) {
+        int[] arr = new int[d];
+        int index = 0;
+        for (int j = i -1; j >= i - d; j--) {
+            arr[index] = transactions[j];
+            index++;
+        }
+        int[] array = Arrays.stream(arr).sorted().toArray();
+        System.out.println(Arrays.toString(array));
+        return array;
     }
 
     public static Integer getBitXOR(int a, int b) {
