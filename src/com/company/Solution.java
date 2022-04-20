@@ -117,8 +117,23 @@ public class Solution {
 //        List<String> trial = Arrays.asList("gather:field:wheat","mill:wheat:flour","bake:flour:bread");
 //        System.out.println((countChange("field", "bread", trial)));
 
+        System.out.println(getRepeatChar("Okwudilichukwu"));
     }
 
+    public static List getRepeatChar(String word) {
+        char[] chars = word.toLowerCase().toCharArray();
+        Map<Character, Integer> charMap = new HashMap<>();
+        for (Character ch : chars) {
+            charMap.put(ch, charMap.containsKey(ch) ? charMap.get(ch) + 1 : 1);
+        }
+
+        List<Character> repeatLetters = new ArrayList<>();
+        for (Map.Entry<Character, Integer> el: charMap.entrySet()) {
+            if(el.getValue() > 1) repeatLetters.add(el.getKey());
+        }
+
+        return repeatLetters;
+    }
     public static int alertCount(int n, int d, int[] transactions) {
         boolean dCheck = (d % 2) < 1;
         int alertCheck = 0;
