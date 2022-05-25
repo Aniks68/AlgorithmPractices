@@ -59,10 +59,11 @@ public class Solution {
 //        System.out.println(Integer.parseInt("100001", 2));
 //
 //        System.out.println(triangleBuilder(18));
-//        var x = arrayRotation(new int[]{10, 20, 30, 40, 50}, 2);
+//        var x = arrayRotation(new int[]{10, 20, 30, 40, 50}, 4);
+//        System.out.println(x.toString());
 
 //        System.out.println(shiftedDiff("fatique", "tiquefa"));
-        //
+
 //        System.out.println(dna("ATCG"));
 
 //        List<Integer> num = List.of(1, 2, 3, 4, 5,6,7);
@@ -77,7 +78,7 @@ public class Solution {
 //        InputStreamReader inputStream = new InputStreamReader(socket.getInputStream());
 //        BufferedReader reader = new BufferedReader(inputStream);
 //        String message = reader.readLine();
-
+//
 //        List<Integer> collect = num.stream().filter(new Predicate<Integer>() {
 //            @Override
 //            public boolean test(Integer x) {
@@ -96,40 +97,84 @@ public class Solution {
 //                        new ArrayList<String>(Arrays.asList("4", "5", "6"))));
 //        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
 //        System.out.println(dirReduc(new String[]{"NORTH", "WEST", "SOUTH", "EAST"}));
+//        int[] transactions = new int[]{2, 3, 4, 2, 7, 3, 6, 8, 4, 5};
+//        System.out.println("Number of suspicious alerts received: "
+//                + alertCount(transactions.length, 5, transactions));
 
+        String word = "aabcccccaaa";
+        System.out.println(strCompression(word));
     }
 
+    public static String strCompression(String word) {
+        StringBuilder finAns = new StringBuilder();
 
+        finAns.append(word.charAt(0));
+        finAns.append(1);
 
+        for (int i = 1; i < word.length(); i++) {
+            boolean dissimilar = word.charAt(i) != word.charAt(i - 1);
+            boolean preSimilar = word.charAt(i) == word.charAt(i - 1);
+            char end = finAns.toString().charAt(finAns.length() - 1);
 
+           if (dissimilar) {
+                finAns.append(word.charAt(i));
+                finAns.append(1);
+            } else if (preSimilar) {
+                int endInt = Integer.parseInt(String.valueOf(end));
+                int newValue = endInt + 1;
+                finAns.deleteCharAt(finAns.length()-1);
+                finAns.append(newValue);
+            }
+        }
+        return finAns.toString();
+    }
 
+    private static boolean charCheck(Object bvn) {
+        String s = String.valueOf(bvn);
+        for(char el : s.toCharArray()) {
+            if(!Character.isDigit(el)) return false;
+        }
+        return true;
+    }
 
+    public static int alertCount(int n, int d, int[] transactions) {
+        boolean dCheck = (d % 2) < 1;
+        int alertCheck = 0;
 
+        if (dCheck && transactions.length > d) {
+            for (int i = transactions.length-1; i >= d ; i--) {
+                int[] arr = getInts(d, transactions, i);
+                int median = (arr[d/2] + arr[(d/2) -1])/2;
+                if(transactions[i] >= median * 2) {
+                    System.out.println("Here's the one: "+Arrays.toString(arr) + ". Suspicious Even transaction: "
+                            +transactions[i] + ". Median is: " +median);
+                    alertCheck+= 1;
+                }
+            }
+        } else if(!dCheck && transactions.length > d) {
+            for (int i = transactions.length-1; i >= d ; i--) {
+                int[] arr = getInts(d, transactions, i);
+                int median = arr[((int) (d/2))];
+                if(transactions[i] >= median * 2) {
+                    System.out.println("Here's the one: " +Arrays.toString(arr) + ". Suspicious Odd transaction: "
+                            +transactions[i] + ". Median is: " +median);
+                    alertCheck+= 1;
+                }
+            }
+        }
+        return alertCheck;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private static int[] getInts(int d, int[] transactions, int i) {
+        int[] arr = new int[d];
+        int index = 0;
+        for (int j = i -1; j >= i - d; j--) {
+            arr[index] = transactions[j];
+            index++;
+        }
+        int[] array = Arrays.stream(arr).sorted().toArray();
+        return array;
+    }
 
 
     public static String[] dirReduc(String[] arr) {
@@ -569,20 +614,20 @@ public class Solution {
     }
 
     static int[] arrayRotation(int[] arr, int num) {
-        List<int[]> arrList = Arrays.asList(arr);
-        arrList.stream().forEach(System.out::println);
+//        List<int[]> arrList = Arrays.asList(arr);
+//        arrList.stream().forEach(System.out::println);
 
-//        int[] newArr = new int[arr.length];
-//
-//        for(int i = 0; i <= num; i++) {
-//            for (int j = 0; j< arr.length-1; j++) {
-//                newArr[0] = arr[arr.length-1];
-//                newArr[j+1] = arr[j];
-//            }
+        int[] newArr = new int[arr.length];
+
+        for(int i = 0; i <= num; i++) {
+            for (int j = 0; j< arr.length-1; j++) {
+                newArr[0] = arr[arr.length-1];
+                newArr[j+1] = arr[j];
+            }
 //            arrayRotation(newArr, num);
-//        }
-//        for(int el : newArr) System.out.println(el);
-        return new int[]{};
+        }
+        for(int el : newArr) System.out.println(el);
+        return newArr;
     }
 
     static int[] method(int[] arr, int target) {
