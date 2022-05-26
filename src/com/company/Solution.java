@@ -90,8 +90,8 @@ public class Solution {
 //        int[] builds2 = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
 //        System.out.println(sunsetViews(builds, "EAST"));
 //        System.out.println(sunsetViews(builds2, "WEST"));
-        int[] exampleTest1 = new int[]{ 3, 71, 9, 6, 1};
-        System.out.println(find(exampleTest1));
+//        int[] exampleTest1 = new int[]{ 3, 71, 9, 6, 1};
+//        System.out.println(find(exampleTest1));
 //        System.out.println(countBinarySubstrings("011100110"));
 //        assertEquals(new ArrayList<ArrayList<String>>(Arrays.asList(new ArrayList<String>(Arrays.asList("1", "two was here", "3")),
 //                        new ArrayList<String>(Arrays.asList("4", "5", "6"))));
