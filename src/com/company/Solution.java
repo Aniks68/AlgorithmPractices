@@ -92,7 +92,7 @@ public class Solution {
 //        System.out.println(sunsetViews(builds2, "WEST"));
 //        int[] exampleTest1 = new int[]{Integer.MAX_VALUE, 0, 1};
 //        System.out.println(find(exampleTest1));
-//        System.out.println(countBinarySubstrings("00110"));
+        System.out.println(countBinarySubstrings("00110"));
 //        assertEquals(new ArrayList<ArrayList<String>>(Arrays.asList(new ArrayList<String>(Arrays.asList("1", "two was here", "3")),
 //                        new ArrayList<String>(Arrays.asList("4", "5", "6"))));
 //        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
@@ -101,8 +101,8 @@ public class Solution {
 //        System.out.println("Number of suspicious alerts received: "
 //                + alertCount(transactions.length, 5, transactions));
 
-        String word = "aabcccccaaa";
-        System.out.println(strCompression(word));
+//        String word = "aabcccccaaa";
+//        System.out.println(strCompression(word));
     }
 
     public static String strCompression(String word) {
@@ -113,13 +113,12 @@ public class Solution {
 
         for (int i = 1; i < word.length(); i++) {
             boolean dissimilar = word.charAt(i) != word.charAt(i - 1);
-            boolean preSimilar = word.charAt(i) == word.charAt(i - 1);
             char end = finAns.toString().charAt(finAns.length() - 1);
 
            if (dissimilar) {
                 finAns.append(word.charAt(i));
                 finAns.append(1);
-            } else if (preSimilar) {
+            } else {
                 int endInt = Integer.parseInt(String.valueOf(end));
                 int newValue = endInt + 1;
                 finAns.deleteCharAt(finAns.length()-1);
@@ -176,38 +175,7 @@ public class Solution {
         return array;
     }
 
-
     public static String[] dirReduc(String[] arr) {
-        // Your code here.
-//        List<String> finAns = new ArrayList<>();
-//        for(int i =0; i < arr.length-1; i++) {
-//            if (arr[i].equals("\"NORTH\"")) {
-//                if ((arr[i + 1].equals("\"EAST\"")) || (arr[i + 1].equals("\"WEST\"")) || (arr[i + 1].equals("\"NORTH\""))) {
-//                    finAns.add(arr[i + 1]);
-//                }
-//            }
-//
-//            if (arr[i].equals("\"SOUTH\"")) {
-//                if ((arr[i + 1].equals("\"EAST\"")) || (arr[i + 1].equals("\"WEST\"")) || (arr[i + 1].equals("\"SOUTH\""))) {
-//                    finAns.add(arr[i + 1]);
-//                }
-//            }
-//
-//            if (arr[i].equals("\"EAST\"")) {
-//                if ((arr[i + 1].equals("\"NORTH\"")) || (arr[i + 1].equals("\"SOUTH\"")) || (arr[i + 1].equals("\"EAST\""))) {
-//                    finAns.add(arr[i + 1]);
-//                }
-//            }
-//
-//            if (arr[i].equals("\"WEST\"")) {
-//                if ((arr[i + 1].equals("\"NORTH\"")) || (arr[i + 1].equals("\"SOUTH\"")) || (arr[i + 1].equals("\"WEST\""))) {
-//                    finAns.add(arr[i + 1]);
-//                }
-//            }
-//        }
-//        return finAns.toArray(new String[finAns.size()]);
-////        return new String[] {};
-            // Your code here.
         if (arr == null || arr.length <= 1) {
             return arr;
         }
@@ -252,14 +220,6 @@ public class Solution {
     }
 
     public static int countBinarySubstrings(String s) {
-//        String[] strArr = s.split("");
-//        int count = 0;
-//        for (int i = 0; i < strArr.length-2; i++) {
-//            if ((!strArr[i].equals(strArr[i+1])) || ((strArr[i].equals(strArr[i+1]) && (strArr[i+2].equals(strArr[i+3]))))) {
-//                count++;
-//            }
-//        }
-//        return count;
         int current = 1, previous = 0, ans = 0;
         for (int i = 1; i < s.length(); i++) {
             if(s.charAt(i) == s.charAt(i-1)){
