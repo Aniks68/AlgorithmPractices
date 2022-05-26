@@ -90,9 +90,9 @@ public class Solution {
 //        int[] builds2 = new int[]{3, 5, 4, 4, 3, 1, 3, 2};
 //        System.out.println(sunsetViews(builds, "EAST"));
 //        System.out.println(sunsetViews(builds2, "WEST"));
-//        int[] exampleTest1 = new int[]{Integer.MAX_VALUE, 0, 1};
-//        System.out.println(find(exampleTest1));
-        System.out.println(countBinarySubstrings("00110"));
+        int[] exampleTest1 = new int[]{ 3, 71, 9, 6, 1};
+        System.out.println(find(exampleTest1));
+//        System.out.println(countBinarySubstrings("011100110"));
 //        assertEquals(new ArrayList<ArrayList<String>>(Arrays.asList(new ArrayList<String>(Arrays.asList("1", "two was here", "3")),
 //                        new ArrayList<String>(Arrays.asList("4", "5", "6"))));
 //        System.out.println(parseCSV("1,\"two was here\",3\n4,5,6", ",", "\""));
@@ -235,33 +235,18 @@ public class Solution {
     public static int find(int[] integers) {
         List<Integer> evenNum = new ArrayList<>();
         List<Integer> oddNum = new ArrayList<>();
-        Integer outlier = null;
+        Integer outlier = 0;
 
         for (int i : integers) {
             if (i%2 == 0) {
                 evenNum.add(i);
-            } else if (i % 2 == 1) {
+            } else {
                 oddNum.add(i);
             }
         }
 
-        if (evenNum.size() == 1) {
-            outlier = evenNum.get(0);
-        } else if (oddNum.size() == 1){
-            outlier = oddNum.get(0);
-        }
+        outlier = evenNum.size() == 1 ? evenNum.get(0) : oddNum.get(0);
         return outlier;
-
-//        int current = 1, previous = 0, ans = 0;
-//        for (int i = 1; i < s.length(); i++) {
-//            if(s.charAt(i) == s.charAt(i-1)){
-//                current++;
-//            } else {
-//                ans += Math.min(current, previous);
-//                previous = current;
-//                current = 1;
-//            }
-//        } return ans + Math.min(current, previous);
     }
 
     public static ArrayList<Integer> sunsetViews(int[] buildings, String direction) {
