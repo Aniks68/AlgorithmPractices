@@ -103,6 +103,22 @@ public class Solution {
 
 //        String word = "aabcccccaaa";
 //        System.out.println(strCompression(word));
+
+        int[] given = new int[]{5, 8, 0, 9, 13, 11, 10, 14, 2, 4, 1, 12, 16, 7, 3, 15, 6};
+        System.out.println(findFirstNonIncludedInteger(given));
+    }
+
+    public static int findFirstNonIncludedInteger(int[] A) {
+        List<Integer> numList = new ArrayList<>();
+        int initial = 1;
+        Long end = 100000L;
+        List<Integer> given = Arrays.stream(A).boxed().collect(Collectors.toList());
+
+        while (0 < initial && initial <= end) {
+            numList.add(initial);
+            initial++;
+        }
+        return numList.stream().filter(num -> !given.contains(num)).findFirst().orElse(1);
     }
 
     public static String strCompression(String word) {
