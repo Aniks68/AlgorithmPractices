@@ -104,7 +104,7 @@ public class Solution {
 //        String word = "aabcccccaaa";
 //        System.out.println(strCompression(word));
 
-        int[] given = new int[]{0, -3, 5, 8, 0, 9, 13, 11, 10, 14, 2, 4, 1, 12, 16, 7, 3, 15, 6};
+        int[] given = new int[]{5, 8, 0, 9, 13, 11, 10, 14, 2, 4, 1, 12, 16, 7, 3, 15, 6};
         System.out.println(findFirstNonIncludedInteger(given));
     }
 
