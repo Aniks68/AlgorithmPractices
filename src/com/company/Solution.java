@@ -104,8 +104,28 @@ public class Solution {
 //        String word = "aabcccccaaa";
 //        System.out.println(strCompression(word));
 
-        int[] given = new int[]{5, 8, 0, 9, 13, 11, 10, 14, 2, 4, 1, 12, 16, 7, 3, 15, 6};
-        System.out.println(findFirstNonIncludedInteger(given));
+//        int[] given = new int[]{5, 8, 0, 9, 13, 11, 10, 14, 2, 4, 1, 12, 16, 7, 3, 15, 6};
+//        System.out.println(findFirstNonIncludedInteger(given));
+
+        int[] array = new int[] {2, 3, 4, 5, 6,7};
+        System.out.println(sumUpCheck(array, 8));
+    }
+
+    public static Response sumUpCheck(int[] array, int sum) {
+        boolean answer = false;
+        int count = 0;
+
+        for(int i = 0; i < array.length; i++) {
+            for (int j = 0; j< array.length; j++) {
+                if ((array[i] + array[j] == sum) && (i != j)) {
+                    answer = true;
+                    count++;
+                }
+            }
+        }
+
+        Response res = new Response(answer, count);
+        return res;
     }
 
     public static int findFirstNonIncludedInteger(int[] array) {
