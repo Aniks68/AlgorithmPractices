@@ -172,12 +172,10 @@ public class Solution {
         for (String s : messageArr) {
             newCount += s.length();
 
-            if (newCount <= K) {
+            if (newCount > K) return sb.toString().trim();
+            else {
                 sb.append(s).append(" ");
                 newCount++;
-            }
-            if (newCount >= K) {
-                return sb.toString().trim();
             }
         }
 
