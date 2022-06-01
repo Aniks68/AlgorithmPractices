@@ -109,11 +109,15 @@ public class Solution {
 
 //        int[] array = new int[] {2, 3, 4, 5, 6,7};
 //        System.out.println(sumUpCheck(array, 12));
-//        String message = "The quick brown fox jumps over the lazy dog";
-//        System.out.println(cropMessage(message, 39));
+        String message = "The quick brown fox jumps over the lazy dog";
+        System.out.println("Cropped Message: " + cropMessage(message, 39));
+
+        int[] P = new int[]{2, 4, 5, 2};
+        int[] S = new int[]{2, 5, 7, 2};
+        System.out.println("MaxCars: " + carPool(P, S));
 
         int[] A = new int[]{3, 0, 5};
-        System.out.println(filtersNeeded(A));
+        System.out.println("Filters Needed: " + filtersNeeded(A));
     }
 
     public static int filtersNeeded(int[] A) {
@@ -145,9 +149,6 @@ public class Solution {
         int maxCars = 0;
 
         int total = Arrays.stream(sortedP).sum();
-        System.out.println(Arrays.toString(P) + " : " + Arrays.toString(sortedP));
-        System.out.println(Arrays.toString(S) + " : " + Arrays.toString(sortedS));
-        System.out.println(total);
 
         for (int i = sortedS.length-1; i >= 0; i--) {
             boolean subtractionCheck = (total - sortedS[i]) > 0;
