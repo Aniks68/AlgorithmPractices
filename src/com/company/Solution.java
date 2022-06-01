@@ -107,8 +107,30 @@ public class Solution {
 //        int[] given = new int[]{5, 8, 0, 9, 13, 11, 10, 14, 2, 4, 1, 12, 16, 7, 3, 15, 6};
 //        System.out.println(findFirstNonIncludedInteger(given));
 
-        int[] array = new int[] {2, 3, 4, 5, 6,7};
-        System.out.println(sumUpCheck(array, 12));
+//        int[] array = new int[] {2, 3, 4, 5, 6,7};
+//        System.out.println(sumUpCheck(array, 12));
+        String message = "The quick brown fox jumps over the lazy dog";
+        System.out.println(cropMessage(message, 39));
+    }
+
+    public static String cropMessage(String message, int K) {
+        String[] messageArr = message.split(" ");
+        int newCount = 0;
+        StringBuilder sb = new StringBuilder();
+
+        for (String s : messageArr) {
+            newCount += s.length();
+
+            if (newCount <= K) {
+                sb.append(s).append(" ");
+                newCount++;
+            }
+            if (newCount >= K) {
+                return sb.toString().trim();
+            }
+        }
+
+        return sb.toString().trim();
     }
 
     public static Response sumUpCheck(int[] array, int sum) {
