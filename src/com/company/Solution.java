@@ -109,8 +109,37 @@ public class Solution {
 
 //        int[] array = new int[] {2, 3, 4, 5, 6,7};
 //        System.out.println(sumUpCheck(array, 12));
-        String message = "The quick brown fox jumps over the lazy dog";
-        System.out.println(cropMessage(message, 39));
+//        String message = "The quick brown fox jumps over the lazy dog";
+//        System.out.println(cropMessage(message, 39));
+
+        int[] P = new int[]{1, 4, 1};
+        int[] S = new int[]{1, 5, 1};
+
+        System.out.println(carPool(P, S));
+    }
+
+    public static int carPool(int[] P, int[] S) {
+        int[] sortedP = Arrays.stream(P).sorted().toArray();
+        int[] sortedS = Arrays.stream(S).sorted().toArray();
+        int maxCars = 0;
+
+        int total = Arrays.stream(sortedP).sum();
+        System.out.println(Arrays.toString(P) + " : " + Arrays.toString(sortedP));
+        System.out.println(Arrays.toString(S) + " : " + Arrays.toString(sortedS));
+        System.out.println(total);
+
+        for (int i = sortedS.length-1; i >= 0; i--) {
+            boolean subtractionCheck = (total - sortedS[i]) > 0;
+            if(subtractionCheck) {
+                total-=sortedS[i];
+                maxCars++;
+            } else {
+                maxCars++;
+                return maxCars;
+            }
+        }
+
+        return maxCars;
     }
 
     public static String cropMessage(String message, int K) {
