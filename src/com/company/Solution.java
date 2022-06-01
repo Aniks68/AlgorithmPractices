@@ -112,10 +112,41 @@ public class Solution {
 //        String message = "The quick brown fox jumps over the lazy dog";
 //        System.out.println(cropMessage(message, 39));
 
-        int[] P = new int[]{1, 4, 1};
-        int[] S = new int[]{1, 5, 1};
+        int[] A = new int[]{3, 0, 5};
 
-        System.out.println(carPool(P, S));
+        System.out.println(filtersNeeded(A));
+    }
+
+    public static int filtersNeeded(int[] A) {
+        float acceptedPollution = Arrays.stream(A).sum() / 2;
+        float currentPollution = 0;
+        int filters = 0;
+        int[] B = new int[A.length];
+        int count = 0;
+
+        for(int i = A.length -1; i >= 0; i--) {
+            B[count] = A[i];
+            count++;
+        }
+
+        for (int i = 0; i < B.length; i++) {
+            if(B[i] != 0) {
+                filters++;
+                currentPollution += (float)A[i] / 2;
+                if (currentPollution >= acceptedPollution) break;
+            }
+        }
+
+        return filters;
+    }
+
+    private static double getPresentPollution(double[] sortedA) {
+        double presentPollution = 0;
+        for(double num : sortedA) {
+            presentPollution += num;
+        }
+
+        return presentPollution;
     }
 
     public static int carPool(int[] P, int[] S) {
