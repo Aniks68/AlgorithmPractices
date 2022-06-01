@@ -108,7 +108,7 @@ public class Solution {
 //        System.out.println(findFirstNonIncludedInteger(given));
 
         int[] array = new int[] {2, 3, 4, 5, 6,7};
-        System.out.println(sumUpCheck(array, 8));
+        System.out.println(sumUpCheck(array, 12));
     }
 
     public static Response sumUpCheck(int[] array, int sum) {
@@ -124,7 +124,7 @@ public class Solution {
             }
         }
 
-        Response res = new Response(answer, count);
+        Response res = new Response(answer, count/2);
         return res;
     }
 
