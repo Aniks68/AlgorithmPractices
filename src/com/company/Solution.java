@@ -140,15 +140,6 @@ public class Solution {
         return filters;
     }
 
-    private static double getPresentPollution(double[] sortedA) {
-        double presentPollution = 0;
-        for(double num : sortedA) {
-            presentPollution += num;
-        }
-
-        return presentPollution;
-    }
-
     public static int carPool(int[] P, int[] S) {
         int[] sortedP = Arrays.stream(P).sorted().toArray();
         int[] sortedS = Arrays.stream(S).sorted().toArray();
