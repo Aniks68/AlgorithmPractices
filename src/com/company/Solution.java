@@ -113,7 +113,6 @@ public class Solution {
 //        System.out.println(cropMessage(message, 39));
 
         int[] A = new int[]{3, 0, 5};
-
         System.out.println(filtersNeeded(A));
     }
 
