@@ -110,7 +110,7 @@ public class Solution {
 //        int[] array = new int[] {2, 3, 4, 5, 6,7};
 //        System.out.println(sumUpCheck(array, 12));
         String message = "The quick brown fox jumps over the lazy dog";
-        System.out.println("Cropped Message: " + cropMessage(message, 39));
+        System.out.println("Cropped Message: " + cropMessage(message, 40));
 
         int[] P = new int[]{2, 4, 5, 2};
         int[] S = new int[]{2, 5, 7, 2};
