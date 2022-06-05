@@ -121,7 +121,7 @@ public class Solution {
     }
 
     public static int filtersNeeded(int[] A) {
-        float acceptedPollution = Arrays.stream(A).sum() / 2;
+        float standardPollution = Arrays.stream(A).sum() / 2;
         float currentPollution = 0;
         int filters = 0;
         int[] B = new int[A.length];
@@ -136,7 +136,7 @@ public class Solution {
             if(B[i] != 0) {
                 filters++;
                 currentPollution += (float)A[i] / 2;
-                if (currentPollution >= acceptedPollution) break;
+                if (currentPollution >= standardPollution) break;
             }
         }
 
