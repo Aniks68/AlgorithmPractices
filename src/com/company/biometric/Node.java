@@ -1,5 +1,8 @@
 package com.company.biometric;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Node {
     private Node leftChild, rightChild;
 
@@ -16,11 +19,32 @@ class Node {
         return this.rightChild;
     }
 
-    public int height() {
-        if (this.leftChild == null && this.rightChild == null) {
-            return 1;
+    public int height(Node root) {
+        if (root == null)
+            return -1;
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        int height = -1;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            height++;
+
+            while (size > 0) {
+                Node treeNode = queue.remove();
+
+                if (treeNode.leftChild != null)
+                    queue.add(treeNode.leftChild);
+
+                if (treeNode.rightChild != null)
+                    queue.add(treeNode.rightChild);
+
+                size--;
+            }
         }
-        return 1 + Math.max(leftChild.height(), rightChild.height());
+        return height;
     }
 
     public static void main(String[] args) {
@@ -29,6 +53,6 @@ class Node {
         Node node = new Node(leaf1, null);
         Node root = new Node(node, leaf2);
 
-        System.out.println(root.height());
+        System.out.println(root.height(root));
     }
 }
