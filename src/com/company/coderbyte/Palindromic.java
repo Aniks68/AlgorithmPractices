@@ -5,17 +5,7 @@ public class Palindromic {
         System.out.println(longestPalindromicSubstring("tracetvhasaracecarelotofviews"));
     }
 
-    public static String Palindromic(String str) {
-        String result = "true";
-        int length = str.length();
-        for (int i = 0; i < length / 2; i++) {
-            if (str.charAt(i) != str.charAt(length - i - 1)) {
-                result = "false";
-                break;
-            }
-        }
-        return result;
-    }
+
 
     public static String longestPalindromicSubstring(String str) {
         String result = "";
