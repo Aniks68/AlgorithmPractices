@@ -5,7 +5,8 @@ import java.util.Arrays;
 public class TimeFormatter {
 
     public static void main(String[] args) {
-        System.out.println(formatDuration(129799L));
+//        System.out.println(formatDuration(129799L));
+//        System.out.println(formatDuration(9849475));
     }
 
     public static String formatDuration(long seconds) {
@@ -24,7 +25,6 @@ public class TimeFormatter {
         timeString[4] = time[4] > 1 ? " seconds" : " second";
         StringBuilder result = new StringBuilder();
         int count = (int) Arrays.stream(time).filter(x -> x != 0).count();
-//        System.out.println("Count: " + count);
 
         for (int i = 0; i < 5; i++) {
             if (time[i] != 0) {
@@ -32,11 +32,28 @@ public class TimeFormatter {
                 result.append(time[i]).append(timeString[i]);
                 if (count == 1) {
                     result.append(" and ");
-                } else if (count < 4 && i < 4) {
+                } else if (count > 1) {
                     result.append(", ");
                 }
             }
         }
-        return result.toString();
+        return result.toString().trim();
+    }
+
+    public static String formatDuration(int t) {
+        int[] DURATIONS = {365*24*3600, 24*3600, 3600, 60, 1};
+        String[] NAMES     = {"year", "day", "hour", "minute", "second"};
+
+        if (t==0) return "now";
+
+        var sb = new StringBuilder();
+        var i  = -1;
+        for (int dt: DURATIONS) { i++;
+            var d = t/dt;
+            t %= dt;
+            if(d>0) sb.append(String.format(" %d %s%s,",d,NAMES[i],d==1?"":"s"));
+        }
+        return sb.toString().replaceAll("(^ )|(,$)","")
+                .replaceAll("(?<=.), (?=\\d+ \\w+$)", " and ");
     }
 }
