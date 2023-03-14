@@ -24,7 +24,8 @@ public class RankUp {
                 {11, 5, 6},
                 {7, 8, 9, 30}
         };
-        System.out.println(longestSlideDown(pyramid));
+//        System.out.println(longestSlideDown(pyramid));
+        System.out.println(JosephusSurvivor(7, 3));
     }
 
     public static String rangeExtraction(int[] arr) {
@@ -63,5 +64,15 @@ public class RankUp {
             }
         }
         return pyramid[0][0];
+    }
+
+    public static int JosephusSurvivor(final int n, final int k) {
+        List<Integer> list = range(1, n + 1).boxed().collect(Collectors.toList());
+        int index = 0;
+        while (list.size() > 1) {
+            index = (index + k - 1) % list.size();
+            list.remove(index);
+        }
+        return list.get(0);
     }
 }
