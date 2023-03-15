@@ -1,9 +1,6 @@
 package com.company.coderwars;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
@@ -25,7 +22,18 @@ public class RankUp {
                 {7, 8, 9, 30}
         };
 //        System.out.println(longestSlideDown(pyramid));
-        System.out.println(JosephusSurvivor(7, 3));
+//        System.out.println(JosephusSurvivor(7, 3));
+        char[][] triplets = {
+                {'t','u','p'},
+                {'w','h','i'},
+                {'t','s','u'},
+                {'a','t','s'},
+                {'h','a','p'},
+                {'t','i','s'},
+                {'w','h','s'}
+        };
+        System.out.println(recoverSecret(triplets)); // "whatisup"
+        System.out.println(recoverSecret2(triplets)); // "whatisup"
     }
 
     public static String rangeExtraction(int[] arr) {
@@ -74,5 +82,104 @@ public class RankUp {
             list.remove(index);
         }
         return list.get(0);
+    }
+
+    public static String recoverSecret(char[][] triplets) {
+        List<Character> list = new ArrayList<>();
+        for (char[] triplet : triplets) {
+            for (char c : triplet) {
+                if (!list.contains(c)) {
+                    list.add(c);
+                }
+            }
+        }
+        for (char[] triplet : triplets) {
+            int index1 = list.indexOf(triplet[0]);
+            int index2 = list.indexOf(triplet[1]);
+            int index3 = list.indexOf(triplet[2]);
+            if (index1 > index2) {
+                Collections.swap(list, index1, index2);
+            }
+            if (index2 > index3) {
+                Collections.swap(list, index2, index3);
+            }
+        }
+        return list.stream().map(String::valueOf).collect(joining());
+    }
+
+    public static String recoverSecret2(char[][] triplets) {
+        Map<Character, Set<Character>> graph = new HashMap<>();
+        Map<Character, Integer> indegree = new HashMap<>();
+
+        // Build the directed graph and compute the indegree of each vertex
+        for (char[] triplet : triplets) {
+            for (int i = 0; i < 3; i++) {
+                char c = triplet[i];
+                graph.putIfAbsent(c, new HashSet<>());
+                indegree.putIfAbsent(c, 0);
+                if (i > 0) {
+                    char prev = triplet[i-1];
+                    if (!graph.get(prev).contains(c)) {
+                        graph.get(prev).add(c);
+                        indegree.put(c, indegree.get(c) + 1);
+                    }
+                }
+            }
+        }
+
+        // Perform a topological sort to determine the order of the characters
+        List<Character> sorted = new ArrayList<>();
+        Queue<Character> queue = new LinkedList<>();
+        for (char c : indegree.keySet()) {
+            if (indegree.get(c) == 0) {
+                queue.offer(c);
+            }
+        }
+        while (!queue.isEmpty()) {
+            char c = queue.poll();
+            sorted.add(c);
+            for (char neighbor : graph.getOrDefault(c, Collections.emptySet())) {
+                indegree.put(neighbor, indegree.get(neighbor) - 1);
+                if (indegree.get(neighbor) == 0) {
+                    queue.offer(neighbor);
+                }
+            }
+        }
+
+        // Convert the sorted list of characters to a string
+        StringBuilder sb = new StringBuilder();
+        for (char c : sorted) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+    public String recoverSecret3(char[][] triplets) {
+        ArrayList<Character> list = new ArrayList<Character>();
+        for(char[] c_array : triplets) {
+            for(char ch : c_array) {
+                if(!list.contains(ch)){
+                    list.add(ch);
+                }
+            }
+        }
+        boolean more = true;
+        while(more){
+            more = false;
+            for(int i = 0; i < triplets.length; i++){
+                for(int j = triplets[i].length-1; j>0; j--){
+                    int pos_ch2 = list.indexOf(triplets[i][j]);
+                    int pos_ch1 = list.indexOf(triplets[i][j-1]);
+                    if(pos_ch2 < pos_ch1){
+                        list.add(pos_ch1 + 1, triplets[i][j]);
+                        list.remove(pos_ch2);
+                        more = true;
+                    }
+                }
+            }
+        }
+
+
+        return list.toString().replaceAll("\\[|\\]|,| ", "");
     }
 }
