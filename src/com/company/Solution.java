@@ -118,7 +118,7 @@ public class Solution {
 //
 //        int[] A = new int[]{3, 0, 5};
 //        System.out.println("Filters Needed: " + filtersNeeded(A));
-//        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 6)));
+        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 7)));
         System.out.println("Valid Parenthesis: " + isValid("()[]}"));
     }
 
@@ -139,18 +139,16 @@ public class Solution {
     }
 
     public static int[] twoSum(int[] nums, int target) {
-        int[] result = {-1, -1};
-
-        for (int i = 0; i < nums.length; i++) {
-            System.out.println("i: " + i);
-            for (int j = 0; j < nums.length; j++) {
-                System.out.println("j: " + j);
-                if(nums[i] + nums[j] == target) {
-                    System.out.println("Sum: " + (nums[i] + nums[j]));
-                    result[0] = i;
-                    result[1] = j;
-                }
+        Map<Integer, Integer> map = new HashMap<>();
+        int[] result = new int[2];
+        for (int x = 0; x < nums.length; x++) {
+            int complement = target - nums[x];
+            if(map.containsKey(complement)) {
+                result[0] = map.get(complement);
+                result[1] = x;
+                return result;
             }
+            map.put(nums[x], x);
         }
 
         return result;
