@@ -109,15 +109,34 @@ public class Solution {
 
 //        int[] array = new int[] {2, 3, 4, 5, 6,7};
 //        System.out.println(sumUpCheck(array, 12));
-        String message = "The quick brown fox jumps over the lazy dog";
-        System.out.println("Cropped Message: " + cropMessage(message, 40));
+//        String message = "The quick brown fox jumps over the lazy dog";
+//        System.out.println("Cropped Message: " + cropMessage(message, 40));
 
-        int[] P = new int[]{2, 4, 5, 2};
-        int[] S = new int[]{2, 5, 7, 2};
-        System.out.println("MaxCars: " + carPool(P, S));
+//        int[] P = new int[]{2, 4, 5, 2};
+//        int[] S = new int[]{2, 5, 7, 2};
+//        System.out.println("MaxCars: " + carPool(P, S));
+//
+//        int[] A = new int[]{3, 0, 5};
+//        System.out.println("Filters Needed: " + filtersNeeded(A));
+        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 6)));
+    }
 
-        int[] A = new int[]{3, 0, 5};
-        System.out.println("Filters Needed: " + filtersNeeded(A));
+    public static int[] twoSum(int[] nums, int target) {
+        int[] result = {-1, -1};
+
+        for (int i = 0; i < nums.length; i++) {
+            System.out.println("i: " + i);
+            for (int j = 0; j < nums.length; j++) {
+                System.out.println("j: " + j);
+                if(nums[i] + nums[j] == target) {
+                    System.out.println("Sum: " + (nums[i] + nums[j]));
+                    result[0] = i;
+                    result[1] = j;
+                }
+            }
+        }
+
+        return result;
     }
 
     public static int filtersNeeded(int[] A) {
