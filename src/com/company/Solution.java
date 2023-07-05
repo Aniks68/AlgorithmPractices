@@ -118,7 +118,24 @@ public class Solution {
 //
 //        int[] A = new int[]{3, 0, 5};
 //        System.out.println("Filters Needed: " + filtersNeeded(A));
-        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 6)));
+//        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 6)));
+        System.out.println("Valid Parenthesis: " + isValid("()[]}"));
+    }
+
+    private static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for(char c : s.toCharArray()) {
+            if(c == '(') {
+                stack.push(')');
+            } else if(c == '{') {
+                stack.push('}');
+            } else if(c == '[') {
+                stack.push(']');
+            } else if(stack.isEmpty() || stack.pop() != c) {
+                return false;
+            }
+        }
+        return stack.isEmpty();
     }
 
     public static int[] twoSum(int[] nums, int target) {
