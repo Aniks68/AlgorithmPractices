@@ -118,8 +118,8 @@ public class Solution {
 //
 //        int[] A = new int[]{3, 0, 5};
 //        System.out.println("Filters Needed: " + filtersNeeded(A));
-        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 7)));
-        System.out.println("Valid Parenthesis: " + isValid("()[]}"));
+//        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 7)));
+        System.out.println("Valid Parenthesis: " + isValid("()[]{()}"));
     }
 
     private static boolean isValid(String s) {
