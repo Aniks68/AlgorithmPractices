@@ -120,8 +120,20 @@ public class Solution {
 //        System.out.println("Filters Needed: " + filtersNeeded(A));
 //        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 7)));
         System.out.println("Valid Parenthesis: " + isValid("()[]{()}"));
+        System.out.println("Longest Word: " + longestWord("fun&!! time"));
     }
 
+    private static  String longestWord(String sentence) {
+//        ignore all non-alphanumeric characters
+        String[] words = sentence.split("[^a-zA-Z0-9]");
+        String longestWord = "";
+        for(String word : words) {
+            if(word.length() > longestWord.length()) {
+                longestWord = word;
+            }
+        }
+        return longestWord;
+    }
     private static boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for(char c : s.toCharArray()) {
