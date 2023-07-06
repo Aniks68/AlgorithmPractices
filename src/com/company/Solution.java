@@ -121,7 +121,23 @@ public class Solution {
 //        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 7)));
 //        System.out.println("Valid Parenthesis: " + isValid("()[]{()}"));
 //        System.out.println("Longest Word: " + longestWord("fun&!! time"));
-        System.out.println("String Scramble: " + stringScramble("cdoreyhgf", "coder"));
+//        System.out.println("String Scramble: " + stringScramble("cdoreyhgf", "coder"));
+        System.out.println("Coin Determiner: " + coinDeterminer(8));
+    }
+
+    private static int coinDeterminer(int num) {
+        int[] coins = new int[]{1, 5, 7, 9, 11};
+        int[] dp = new int[num + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int i = 1; i <= num; i++) {
+            for(int coin : coins) {
+                if(i - coin >= 0) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+        }
+        return dp[num];
     }
 
     private static boolean stringScramble(String str1, String str2) {
