@@ -122,8 +122,74 @@ public class Solution {
 //        System.out.println("Valid Parenthesis: " + isValid("()[]{()}"));
 //        System.out.println("Longest Word: " + longestWord("fun&!! time"));
 //        System.out.println("String Scramble: " + stringScramble("cdoreyhgf", "coder"));
-        System.out.println("Coin Determiner: " + coinDeterminer(8));
+//        System.out.println("Coin Determiner: " + coinDeterminer(8));
+        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
+        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
     }
+
+    private static String gasStation(String[] strArr) {
+//        strArr = new String[]{"4", "1:1", "2:2", "1:2", "0:1"};
+        int n = Integer.parseInt(strArr[0]);
+        int[][] stations = new int[n][2];
+        for(int i = 1; i < strArr.length; i++) {
+            String[] station = strArr[i].split(":");
+            stations[i - 1][0] = Integer.parseInt(station[0]);
+            stations[i - 1][1] = Integer.parseInt(station[1]);
+        }
+        int[] dp = new int[n];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int i = 1; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                int distance = stations[i][0] - stations[j][0];
+                int gas = stations[j][1];
+                if(gas >= distance) {
+                    dp[i] = Math.min(dp[i], dp[j] + distance);
+                }
+            }
+        }
+        return dp[n - 1] == Integer.MAX_VALUE ? "impossible" : String.valueOf(dp[n - 1]);
+    }
+
+    private static String GasStation(String[] strArr) {
+        int N = Integer.parseInt(strArr[0]); // Number of gas stations
+        int totalAvailableGas = 0; // Total gas available
+        int usedGas = 0; // Total cost to travel
+
+        int startStation = 0; // Starting gas station
+        int currentGas = 0; // Current gas available
+
+        for (int i = 1; i <= N; i++) {
+            String[] gasCost = strArr[i].split(":");
+            int gas = Integer.parseInt(gasCost[0]);
+            int cost = Integer.parseInt(gasCost[1]);
+
+            totalAvailableGas += gas;
+            usedGas += cost;
+
+            currentGas += (gas - cost);
+
+            // If currentGas is negative, the current start station is not feasible
+            // Set startStation to the next station and reset currentGas
+            if (currentGas < 0) {
+                startStation = i + 1;
+                currentGas = 0;
+            }
+        }
+
+        // If totalAvailableGas is less than usedGas, it is impossible to complete the route
+        if (totalAvailableGas < usedGas) {
+            return "impossible";
+        }
+
+        // If startStation exceeds the number of gas stations, wrap around to the beginning
+        if (startStation > N) {
+            startStation = 1;
+        }
+
+        return String.valueOf(startStation);
+    }
+
 
     private static int coinDeterminer(int num) {
         int[] coins = new int[]{1, 5, 7, 9, 11};
