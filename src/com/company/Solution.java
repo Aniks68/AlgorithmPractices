@@ -119,8 +119,23 @@ public class Solution {
 //        int[] A = new int[]{3, 0, 5};
 //        System.out.println("Filters Needed: " + filtersNeeded(A));
 //        System.out.println("Two Sum: " + Arrays.toString(twoSum(new int[]{3, 2, 4}, 7)));
-        System.out.println("Valid Parenthesis: " + isValid("()[]{()}"));
-        System.out.println("Longest Word: " + longestWord("fun&!! time"));
+//        System.out.println("Valid Parenthesis: " + isValid("()[]{()}"));
+//        System.out.println("Longest Word: " + longestWord("fun&!! time"));
+        System.out.println("String Scramble: " + stringScramble("cdoreyhgf", "coder"));
+    }
+
+    private static boolean stringScramble(String str1, String str2) {
+        int[] charCount = new int[26];
+        for(char c : str1.toCharArray()) {
+            charCount[c - 'a']++;
+        }
+        for(char c : str2.toCharArray()) {
+            if(--charCount[c - 'a'] < 0) {
+                return false;
+            }
+
+        }
+        return true;
     }
 
     private static  String longestWord(String sentence) {
