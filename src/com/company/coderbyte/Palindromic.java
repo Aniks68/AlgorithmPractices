@@ -3,6 +3,7 @@ package com.company.coderbyte;
 public class Palindromic {
     public static void main(String[] args) {
         System.out.println(longestPalindromicSubstring("tracetvhasaracecarelotofviews"));
+//        System.out.println(isPalindrome("never odd or even"));
     }
 
 
@@ -22,6 +23,7 @@ public class Palindromic {
     }
 
     public static boolean isPalindrome(String str) {
+        str = str.replaceAll("\\s", "");
         int length = str.length();
         for (int i = 0; i < length / 2; i++) {
             if (str.charAt(i) != str.charAt(length - i - 1)) {
