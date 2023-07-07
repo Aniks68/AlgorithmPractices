@@ -127,30 +127,6 @@ public class Solution {
         System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
     }
 
-    private static String gasStation(String[] strArr) {
-//        strArr = new String[]{"4", "1:1", "2:2", "1:2", "0:1"};
-        int n = Integer.parseInt(strArr[0]);
-        int[][] stations = new int[n][2];
-        for(int i = 1; i < strArr.length; i++) {
-            String[] station = strArr[i].split(":");
-            stations[i - 1][0] = Integer.parseInt(station[0]);
-            stations[i - 1][1] = Integer.parseInt(station[1]);
-        }
-        int[] dp = new int[n];
-        Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0;
-        for(int i = 1; i < n; i++) {
-            for(int j = 0; j < i; j++) {
-                int distance = stations[i][0] - stations[j][0];
-                int gas = stations[j][1];
-                if(gas >= distance) {
-                    dp[i] = Math.min(dp[i], dp[j] + distance);
-                }
-            }
-        }
-        return dp[n - 1] == Integer.MAX_VALUE ? "impossible" : String.valueOf(dp[n - 1]);
-    }
-
     private static String GasStation(String[] strArr) {
         int N = Integer.parseInt(strArr[0]); // Number of gas stations
         int totalAvailableGas = 0; // Total gas available
