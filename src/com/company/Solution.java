@@ -123,8 +123,17 @@ public class Solution {
 //        System.out.println("Longest Word: " + longestWord("fun&!! time"));
 //        System.out.println("String Scramble: " + stringScramble("cdoreyhgf", "coder"));
 //        System.out.println("Coin Determiner: " + coinDeterminer(8));
-        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
-        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
+//        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
+//        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
+        System.out.println("Labyrinth steps: " + labyrinthShortestSteps(new int[][]{{0, 0, 1, 0},
+                                                                                    {1, 0, 0, 0},
+                                                                                    {0, 0, 1, 0}}));
+    }
+
+    private static int labyrinthShortestSteps(int[][] grid) {
+//        find the shortest path from top left to bottom right
+
+        for
     }
 
     private static String GasStation(String[] strArr) {
@@ -165,7 +174,6 @@ public class Solution {
 
         return String.valueOf(startStation);
     }
-
 
     private static int coinDeterminer(int num) {
         int[] coins = new int[]{1, 5, 7, 9, 11};
