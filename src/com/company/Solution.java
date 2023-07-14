@@ -133,7 +133,44 @@ public class Solution {
     private static int labyrinthShortestSteps(int[][] grid) {
 //        find the shortest path from top left to bottom right
 
-        for
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        // Visited array to keep track of visited cells
+        boolean[][] visited = new boolean[rows][cols];
+        visited[0][0] = true;
+
+        // Queue to perform BFS
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{0, 0, 0}); // {row, column, steps}
+
+        while (!queue.isEmpty()) {
+            int[] curr = queue.poll();
+            int currRow = curr[0];
+            int currCol = curr[1];
+            int currSteps = curr[2];
+
+            // Check if reached the bottom right corner
+            if (currRow == rows - 1 && currCol == cols - 1) {
+                return currSteps;
+            }
+
+            int[][] directions = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+            // Explore all possible directions
+            for (int[] direction : directions) {
+                int newRow = currRow + direction[0];
+                int newCol = currCol + direction[1];
+
+                // Check if the new cell is within the grid boundaries and not a wall (value of 1)
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] != 1 && !visited[newRow][newCol]) {
+                    visited[newRow][newCol] = true;
+                    queue.offer(new int[]{newRow, newCol, currSteps + 1});
+                }
+            }
+        }
+
+        // If unable to reach the bottom right corner
+        return -1;
     }
 
     private static String GasStation(String[] strArr) {
