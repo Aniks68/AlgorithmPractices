@@ -123,8 +123,8 @@ public class Solution {
 //        System.out.println("Longest Word: " + longestWord("fun&!! time"));
 //        System.out.println("String Scramble: " + stringScramble("cdoreyhgf", "coder"));
 //        System.out.println("Coin Determiner: " + coinDeterminer(8));
-//        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
-//        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
+        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
+        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
 
     }
 
