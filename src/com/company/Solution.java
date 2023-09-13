@@ -1,15 +1,11 @@
 package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.Socket;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.*;
 
 public class Solution {
 
@@ -123,9 +119,64 @@ public class Solution {
 //        System.out.println("Longest Word: " + longestWord("fun&!! time"));
 //        System.out.println("String Scramble: " + stringScramble("cdoreyhgf", "coder"));
 //        System.out.println("Coin Determiner: " + coinDeterminer(8));
-        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
-        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
+//        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
+//        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
 
+        System.out.println(getDiscountedPrice("74005364"));
+    }
+
+    private static int getDiscountedPrice(String barcode) throws IOException {
+        String baseURL = "https://jsonmock.hackerrank.com/api/inventory?barcode=";
+        String url = baseURL + barcode;
+
+        URL urlString = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) urlString.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Accept", "application/json");
+
+        int responseCode = connection.getResponseCode();
+
+        if (responseCode != 200) {
+            throw new RuntimeException("HttpResponseCode: " + responseCode);
+        } else {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = reader.readLine()) != null) {
+                response.append(inputLine);
+            }
+
+            String value = response.toString().replaceAll("[\\{\\[\\]\\}]", " ");
+
+            String[] values = value.split(",");
+            System.out.println(Arrays.toString(values));
+
+
+            Integer price = null;
+            Integer discount = null;
+            for (String s : values) {
+                if (s.contains("data")) {
+                    String[] split = s.split(":");
+                    if (split[1].trim().isEmpty()) {
+                        return -1;
+                    }
+                }
+                if (s.contains("price")) {
+                    String[] split = s.split(":");
+                    price = Integer.parseInt(split[1]);
+                }
+                if (s.contains("discount")) {
+                    String[] split = s.split(":");
+                    discount = Integer.parseInt(split[1]);
+                }
+            }
+
+            if (price != null && discount != null) {
+                return price - (price * discount / 100);
+            }
+        }
+        return -10;
     }
 
     private static String GasStation(String[] strArr) {
