@@ -128,6 +128,7 @@ public class Solution {
 //        check if ints contain 8
         System.out.println(Arrays.stream(A).anyMatch(x -> x == 36));
 
+        System.out.println(closestToZeroTemperature(new int[]{-15, -7, -9, -14, -12}));
     }
 
     public static int pickHeaviestPackageIndexFromConveyorBelt(int weight1, int weight2, int weight3) {
