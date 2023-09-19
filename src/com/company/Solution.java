@@ -131,6 +131,20 @@ public class Solution {
         System.out.println(calculateTotalPriceWithDiscountForMostExpensive(new int[]{1079, 209, 303}, 10));
     }
 
+    public static String classifyPackage(int width, int height, int length, int mass) {
+        boolean bulky = (width * height * length >= 1000000) || (width >= 150 || height >= 150 || length >= 150);
+        boolean heavy = mass > 20;
+
+        if (bulky && heavy) {
+            return "REJECTED";
+        } else if (bulky || heavy) {
+            return "SPECIAL";
+        }  else {
+            return "STANDARD";
+        }
+
+    }
+
     public static int calculateTotalPriceWithDiscountForMostExpensive(int[] prices, int discount) {
         float max = prices[0];
         int sum = 0;
