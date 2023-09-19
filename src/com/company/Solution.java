@@ -131,6 +131,15 @@ public class Solution {
         System.out.println(calculateTotalPriceWithDiscountForMostExpensive(new int[]{1079, 209, 303}, 10));
     }
 
+    public static double approximatePointsInsideQuarterDiskToPiDivideFour(double[][] pts) {
+        int inside = 0;
+        for (double[] pt : pts) {
+            if (Math.sqrt(pt[0] * pt[0] + pt[1] * pt[1]) <= 1) {
+                inside++;
+            }
+        }
+        return (double) inside / pts.length * 4;
+    }
     public static String classifyPackage(int width, int height, int length, int mass) {
         boolean bulky = (width * height * length >= 1000000) || (width >= 150 || height >= 150 || length >= 150);
         boolean heavy = mass > 20;
