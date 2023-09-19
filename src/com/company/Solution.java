@@ -130,6 +130,19 @@ public class Solution {
 
     }
 
+    public static int pickHeaviestPackageIndexFromConveyorBelt(int weight1, int weight2, int weight3) {
+        int[] weights = new int[]{weight1, weight2, weight3};
+        int max = weights[0];
+        int index = 0;
+        for (int i = 1; i < weights.length; i++) {
+            if (weights[i] > max) {
+                max = weights[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+
     public static int closestToZeroTemperature(int[] ts) {
         if (ts.length == 0) {
             return 0;
