@@ -123,14 +123,26 @@ public class Solution {
 //        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
 
 //        System.out.println(getDiscountedPrice("74005364"));
-
-        int[] A = new int[]{-9, 14, 37, 102};
-//        check if ints contain 8
-        System.out.println(Arrays.stream(A).anyMatch(x -> x == 36));
-
-        System.out.println(closestToZeroTemperature(new int[]{-15, -7, -9, -14, -12}));
+//
+//        int[] A = new int[]{-9, 14, 37, 102};
+//        System.out.println(Arrays.stream(A).anyMatch(x -> x == 36));
+//
+//        System.out.println(closestToZeroTemperature(new int[]{-15, -7, -9, -14, -12}));
+        System.out.println(calculateTotalPriceWithDiscountForMostExpensive(new int[]{1079, 209, 303}, 10));
     }
 
+    public static int calculateTotalPriceWithDiscountForMostExpensive(int[] prices, int discount) {
+        float max = prices[0];
+        int sum = 0;
+        for (Integer price : prices) {
+            if (price > max) {
+                max = price;
+            }
+            sum += price;
+        }
+
+        return (int) (sum - (max * discount / 100));
+    }
     public static int pickHeaviestPackageIndexFromConveyorBelt(int weight1, int weight2, int weight3) {
         int[] weights = new int[]{weight1, weight2, weight3};
         int max = weights[0];
