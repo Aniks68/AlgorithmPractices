@@ -122,7 +122,28 @@ public class Solution {
 //        System.out.println("Gas Station: " + GasStation(new String[]{"4", "1:1", "2:2", "1:2", "0:1"}));
 //        System.out.println("Gas Station: " + GasStation(new String[]{"4", "0:1", "2:2", "1:2", "3:1"}));
 
-        System.out.println(getDiscountedPrice("74005364"));
+//        System.out.println(getDiscountedPrice("74005364"));
+
+        int[] A = new int[]{-9, 14, 37, 102};
+//        check if ints contain 8
+        System.out.println(Arrays.stream(A).anyMatch(x -> x == 36));
+
+    }
+
+    public static int closestToZeroTemperature(int[] ts) {
+        if (ts.length == 0) {
+            return 0;
+        }
+
+        int closest = ts[0];
+        for (int i = 1; i < ts.length; i++) {
+            if (Math.abs(ts[i]) < Math.abs(closest)) {
+                closest = ts[i];
+            } else if (Math.abs(ts[i]) == Math.abs(closest)) {
+                closest = Math.max(closest, ts[i]);
+            }
+        }
+        return closest;
     }
 
     private static int getDiscountedPrice(String barcode) throws IOException {
