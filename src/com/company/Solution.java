@@ -128,7 +128,29 @@ public class Solution {
 //        System.out.println(Arrays.stream(A).anyMatch(x -> x == 36));
 //
 //        System.out.println(closestToZeroTemperature(new int[]{-15, -7, -9, -14, -12}));
-        System.out.println(calculateTotalPriceWithDiscountForMostExpensive(new int[]{1079, 209, 303}, 10));
+//        System.out.println(calculateTotalPriceWithDiscountForMostExpensive(new int[]{1079, 209, 303}, 10));
+        System.out.println(barterMarket(3, 6, 4, 5));
+    }
+
+//    Barter Market solution
+    public static int barterMarket(int comicBooks, int coins, int coinsNeeded, int coinsOffered) {
+//        A fiction book costs 1 comic book and coinsNeeded coins
+//        at each time, if coins is less than coins needed, trade a comic book (as long as there is at least one comic book left to buy a fiction book later) for coins offered until total coins is greater than or equals coins needed
+//        then buy a fiction book for the cost of 1 comic book and coins needed
+//        return max amount of fiction books that can be bought
+
+        int fictionBooks = 0;
+        while (comicBooks > 0) {
+            if (coins < coinsNeeded) {
+                comicBooks--;
+                coins += coinsOffered;
+            } else {
+                coins -= coinsNeeded;
+                comicBooks--;
+                fictionBooks++;
+            }
+        }
+        return fictionBooks;
     }
 
     public static double approximatePointsInsideQuarterDiskToPiDivideFour(double[][] pts) {
