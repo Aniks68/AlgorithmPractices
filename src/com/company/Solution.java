@@ -129,7 +129,37 @@ public class Solution {
 //
 //        System.out.println(closestToZeroTemperature(new int[]{-15, -7, -9, -14, -12}));
 //        System.out.println(calculateTotalPriceWithDiscountForMostExpensive(new int[]{1079, 209, 303}, 10));
-        System.out.println(barterMarket(3, 6, 4, 5));
+//        System.out.println(barterMarket(3, 6, 4, 5));
+        List<String> messages = List.of("hello", "bye", "bye", "hello", "bye", "hello");
+        List<Integer> timestamps = List.of(1, 4, 5, 10, 11, 14);
+        System.out.println(getMessageStatus(timestamps, messages, 5));
+    }
+
+    public static List<String> getMessageStatus(List<Integer> timestamps, List<String> messages, int k) {
+//        return a list of true or false if the message was sent within k seconds
+//        timestamps is a list of timestamps in seconds
+//        messages is a list of messages
+//        k is the minimum time in seconds between same messages
+
+        List<String> result = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < messages.size(); i++) {
+            String message = messages.get(i);
+            int timestamp = timestamps.get(i);
+            if (map.containsKey(message)) {
+                int lastTimestamp = map.get(message);
+                if (timestamp - lastTimestamp < k) {
+                    result.add("false");
+                } else {
+                    result.add("true");
+                    map.put(message, timestamp);
+                }
+            } else {
+                result.add("true");
+                map.put(message, timestamp);
+            }
+        }
+        return result;
     }
 
 //    Barter Market solution
