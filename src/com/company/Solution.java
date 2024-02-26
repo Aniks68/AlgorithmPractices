@@ -130,10 +130,52 @@ public class Solution {
 //        System.out.println(closestToZeroTemperature(new int[]{-15, -7, -9, -14, -12}));
 //        System.out.println(calculateTotalPriceWithDiscountForMostExpensive(new int[]{1079, 209, 303}, 10));
 //        System.out.println(barterMarket(3, 6, 4, 5));
-        List<String> messages = List.of("hello", "bye", "bye", "hello", "bye", "hello");
-        List<Integer> timestamps = List.of(1, 4, 5, 10, 11, 14);
-        System.out.println(getMessageStatus(timestamps, messages, 5));
+//        List<String> messages = List.of("hello", "bye", "bye", "hello", "bye", "hello");
+//        List<Integer> timestamps = List.of(1, 4, 5, 10, 11, 14);
+//        System.out.println(getMessageStatus(timestamps, messages, 5));
     }
+
+//    Write a class called User that is used to calculate the amount that a user will progress through a ranking system similar to the one Codewars uses.
+//
+//    Business Rules:
+//    A user starts at rank -8 and can progress all the way to 8.
+//    There is no 0 (zero) rank. The next rank after -1 is 1.
+//    Users will complete activities. These activities also have ranks.
+//    Each time the user completes a ranked activity the users rank progress is updated based off of the activity's rank
+//    The progress earned from the completed activity is relative to what the user's current rank is compared to the rank of the activity
+//    A user's rank progress starts off at zero, each time the progress reaches 100 the user's rank is upgraded to the next level
+//    Any remaining progress earned while in the previous rank will be applied towards the next rank's progress (we don't throw any progress away). The exception is if there is no other rank left to progress towards (Once you reach rank 8 there is no more progression).
+//    A user cannot progress beyond rank 8.
+//    The only acceptable range of rank values is -8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8. Any other value should raise an error.
+//    The progress is scored like so:
+//
+//    Completing an activity that is ranked the same as that of the user's will be worth 3 points
+//    Completing an activity that is ranked one ranking lower than the user's will be worth 1 point
+//    Any activities completed that are ranking 2 levels or more lower than the user's ranking will be ignored
+//    Completing an activity ranked higher than the current user's rank will accelerate the rank progression. The greater the difference between rankings the more the progression will be increased. The formula is 10 * d * d where d equals the difference in ranking between the activity and the user.
+//    Logic Examples:
+//    If a user ranked -8 completes an activity ranked -7 they will receive 10 progress
+//    If a user ranked -8 completes an activity ranked -6 they will receive 40 progress
+//    If a user ranked -8 completes an activity ranked -5 they will receive 90 progress
+//    If a user ranked -8 completes an activity ranked -4 they will receive 160 progress, resulting in the user being upgraded to rank -7 and having earned 60 progress towards their next rank
+//    If a user ranked -1 completes an activity ranked 1 they will receive 10 progress (remember, zero rank is ignored)
+
+
+
+//    Prorating Subscriptions
+//    Background: Our company has started selling to larger customers, so we are creating subscripton tiers with different features set to cater to our customers' unique needs.
+//    We previously charged every customer a flat fee per month, but now we plan on charging the number of users active on the customer's subscription plan. As a result, we're changing our billing system.
+
+//    Instructions:
+//    Implement a monthlyCharge function to calculate the monthly bill for a customer. Customers are billed based on their subscription tier. We charge a prorated amount for the portion of the month that
+//    each user was active on the subscription plan. We want to bill customers for all the days users were active on the subscription plan in a given month (including any activation and deactivation days,
+//    since the user had some access on those days).
+//
+//    Notes:
+//    1. Calculate a daily rate for the subscription tier
+//    2. For each day of the month, identify which users had an active subscription on that day
+//    3. Multiply the number of active users for the day by the daily rate to calculate the total for the day
+//    4. Return the sum of the daily totals for the month
 
     public static List<String> getMessageStatus(List<Integer> timestamps, List<String> messages, int k) {
 //        return a list of true or false if the message was sent within k seconds
@@ -162,7 +204,6 @@ public class Solution {
         return result;
     }
 
-//    Barter Market solution
     public static int barterMarket(int comicBooks, int coins, int coinsNeeded, int coinsOffered) {
 //        A fiction book costs 1 comic book and coinsNeeded coins
 //        at each time, if coins is less than coins needed, trade a comic book (as long as there is at least one comic book left to buy a fiction book later) for coins offered until total coins is greater than or equals coins needed
@@ -192,6 +233,7 @@ public class Solution {
         }
         return (double) inside / pts.length * 4;
     }
+
     public static String classifyPackage(int width, int height, int length, int mass) {
         boolean bulky = (width * height * length >= 1000000) || (width >= 150 || height >= 150 || length >= 150);
         boolean heavy = mass > 20;
@@ -218,6 +260,7 @@ public class Solution {
 
         return (int) (sum - (max * discount / 100));
     }
+
     public static int pickHeaviestPackageIndexFromConveyorBelt(int weight1, int weight2, int weight3) {
         int[] weights = new int[]{weight1, weight2, weight3};
         int max = weights[0];
