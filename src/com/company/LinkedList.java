@@ -54,17 +54,60 @@ public class LinkedList {
         }
     }
 
+//    Given the segment structure of a process as a linked list, find the longest sub-list that has the segment sizes in a non-increasing order. A sub-list of length 1 is considered non-increasing.
+//    If there are multiple sub-lists of maximum length, return  the sublist that occurs earliest.
+//    The data of a node is the size of the segment.
+
+    public String locateLongestSubListOfNonDecreasingData(Node1 head) {
+        Node1 curr = head;
+        Node1 prev = null;
+        int max = 0;
+        int count = 0;
+        Node1 start = null;
+        Node1 end = null;
+        while (curr != null) {
+            if (prev == null || prev.getData() >= curr.getData()) {
+                count++;
+                if (count == 1) {
+                    start = prev;
+                }
+                end = curr;
+                if (count > max) {
+                    max = count;
+                }
+            } else {
+                count = 0;
+            }
+            prev = curr;
+            curr = curr.getNextNode();
+        }
+        getLengthOfSubList(start, end);
+        return "Start: " + start + "\n" + " End: " + end;
+    }
+
+    private int getLengthOfSubList(Node1 start, Node1 end) {
+        System.out.println("Start: " + start + " End: " + end);
+        int count = 0;
+        while (start != null && start != end.getNextNode()) {
+            count++;
+            start = start.getNextNode();
+        }
+        System.out.println("Length of sub list: " + count);
+        return count;
+    }
+
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        list.add(15);
-        list.add(20);
-        list.add(25);
-        list.add(30);
-        list.add(35);
-        list.addHead(95);
-        System.out.println(list);
-        System.out.println(list.getHead());
-        System.out.println(list.getHead().getData());
+//        list.add(2);
+        list.add(5);
+        list.add(4);
+        list.add(4);
+        list.add(5);
+        list.addHead(2);
+//        System.out.println(list);
+//        System.out.println(list.getHead());
+//        System.out.println(list.getHead().getData());
+        System.out.println(list.locateLongestSubListOfNonDecreasingData(list.getHead()));
     }
 }
 
@@ -90,5 +133,13 @@ public class LinkedList {
 
         public void setNextNode(Node1 nextNode) {
             this.nextNode = nextNode;
+        }
+
+        @Override
+        public String toString() {
+            return "Node1{" +
+                    "data=" + data +
+                    ", nextNode=" + nextNode +
+                    '}';
         }
     }

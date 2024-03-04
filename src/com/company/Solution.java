@@ -133,6 +133,27 @@ public class Solution {
 //        List<String> messages = List.of("hello", "bye", "bye", "hello", "bye", "hello");
 //        List<Integer> timestamps = List.of(1, 4, 5, 10, 11, 14);
 //        System.out.println(getMessageStatus(timestamps, messages, 5));
+        List<Integer> center = List.of(2, 0, 3, -4);
+//        System.out.println(suitableLocations(List.of(-2, 1, 0), 8));
+        System.out.println(suitableLocations(center, 22));
+    }
+
+//    Amazon has multiple delivery centers and delivery warehouses all over the world. The world is represented by
+//    a number line from -10^9 to 10^9. There are n delivery centers, A location X is called a suitable location for
+//    a warehouse if it is possible to bring all the products to that point by travelling a distance of no more than d.
+//    At any one time, products can be brought from one delivery center and palced at point x. Given the positions of
+//     n delivery centers, calculate the number of suitable locations in the world. That is, calculate the number of points x on the number
+//    line where the travel distance is required to be no more than d.
+    public static int suitableLocations(List<Integer> center, long d) {
+        int count = 0;
+        for (int i = 0; i < center.size(); i++) {
+            for (int j = i + 1; j < center.size(); j++) {
+                if (Math.abs(center.get(i) - center.get(j)) <= d) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 //    Write a class called User that is used to calculate the amount that a user will progress through a ranking system similar to the one Codewars uses.
@@ -206,7 +227,8 @@ public class Solution {
 
     public static int barterMarket(int comicBooks, int coins, int coinsNeeded, int coinsOffered) {
 //        A fiction book costs 1 comic book and coinsNeeded coins
-//        at each time, if coins is less than coins needed, trade a comic book (as long as there is at least one comic book left to buy a fiction book later) for coins offered until total coins is greater than or equals coins needed
+//        at each time, if coins is less than coins needed, trade a comic book (as long as there is at least one comic book left to
+//        buy a fiction book later) for coins offered until total coins is greater than or equals coins needed
 //        then buy a fiction book for the cost of 1 comic book and coins needed
 //        return max amount of fiction books that can be bought
 
