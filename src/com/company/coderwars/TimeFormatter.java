@@ -40,20 +40,20 @@ public class TimeFormatter {
         return result.toString().trim();
     }
 
-    public static String formatDuration(int t) {
-        int[] DURATIONS = {365*24*3600, 24*3600, 3600, 60, 1};
-        String[] NAMES     = {"year", "day", "hour", "minute", "second"};
-
-        if (t==0) return "now";
-
-        var sb = new StringBuilder();
-        var i  = -1;
-        for (int dt: DURATIONS) { i++;
-            var d = t/dt;
-            t %= dt;
-            if(d>0) sb.append(String.format(" %d %s%s,",d,NAMES[i],d==1?"":"s"));
-        }
-        return sb.toString().replaceAll("(^ )|(,$)","")
-                .replaceAll("(?<=.), (?=\\d+ \\w+$)", " and ");
-    }
+//    public static String formatDuration(int t) {
+//        int[] DURATIONS = {365*24*3600, 24*3600, 3600, 60, 1};
+//        String[] NAMES     = {"year", "day", "hour", "minute", "second"};
+//
+//        if (t==0) return "now";
+//
+//        var sb = new StringBuilder();
+//        var i  = -1;
+//        for (int dt: DURATIONS) { i++;
+//            var d = t/dt;
+//            t %= dt;
+//            if(d>0) sb.append(String.format(" %d %s%s,",d,NAMES[i],d==1?"":"s"));
+//        }
+//        return sb.toString().replaceAll("(^ )|(,$)","")
+//                .replaceAll("(?<=.), (?=\\d+ \\w+$)", " and ");
+//    }
 }

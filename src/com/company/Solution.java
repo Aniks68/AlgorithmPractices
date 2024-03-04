@@ -6,6 +6,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Solution {
 
@@ -133,9 +135,58 @@ public class Solution {
 //        List<String> messages = List.of("hello", "bye", "bye", "hello", "bye", "hello");
 //        List<Integer> timestamps = List.of(1, 4, 5, 10, 11, 14);
 //        System.out.println(getMessageStatus(timestamps, messages, 5));
-        List<Integer> center = List.of(2, 0, 3, -4);
+//        List<Integer> center = List.of(2, 0, 3, -4);
 //        System.out.println(suitableLocations(List.of(-2, 1, 0), 8));
-        System.out.println(suitableLocations(center, 22));
+//        System.out.println(suitableLocations(center, 22));
+
+        System.out.println(topArticles(3));
+    }
+
+    public static List<String> topArticles(int limit) {
+        String baseUrl = "https://jsonmock.hackerrank.com/api/articles?page=3";
+        List<String> result = new ArrayList<>();
+
+        try {
+            URL url = new URL(baseUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept", "application/json");
+
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode != 200) {
+                throw new RuntimeException("HttpResponseCode: " + responseCode);
+            } else {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = reader.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                JSONObject jsonResponse = new JSONObject(response.toString());
+                JSONArray data = jsonResponse.getJSONArray("data");
+
+//                sort the data by the num_comments field
+                List<JSONObject> dataList = new ArrayList<>();
+                for (int i = 0; i < data.length(); i++) {
+                    dataList.add(data.getJSONObject(i));
+                }
+
+                dataList.sort((a, b) -> b.getInt("num_comments") - a.getInt("num_comments"));
+
+//                add only the first limit number of articles to the result list
+                for (int i = 0; i < limit; i++) {
+                    result.add(dataList.get(i).getString("title"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(result);
+        System.out.println(result.size());
+        return result;
     }
 
 //    Amazon has multiple delivery centers and delivery warehouses all over the world. The world is represented by
